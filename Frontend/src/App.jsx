@@ -6,7 +6,7 @@ import MainPage from "./pages/MainPage";
 function App(){
 return(
   <BrowserRouter> 
-  <div>
+  <div className='bg-[url("darkGrey.jpg")] bg-cover bg-center'>
     <NavBar/>
     <Routes>
     <Route path="/" element={<MainPage/>}/>

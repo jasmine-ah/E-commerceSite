@@ -15,19 +15,24 @@ setNav(!nav);
 
     return(
 <header className='md:sticky top-0 z-40'>
-    <div className='flex justify-between items-center h-24 max-w-[100%] mx-auto px-8 text-[#c79dd1] bg-[rgb(241,241,241)]'>
-    <h1 className='w-full text-xl font-bold text-[#c79dd1]'>E-Commerce.</h1>
-<ul className='hidden sm:hidden md:flex'>
-    <li className='p-4 hover:text-xl'><Link to="/">Home</Link></li>
-    <li className='p-4 hover:text-xl'><HashLink to="/#About">About</HashLink></li>
-    <li className='p-4 hover:text-xl'><HashLink to="/#services">Services</HashLink></li>
-    <li className='p-4 hover:text-xl'><HashLink to="/#footer">Contact</HashLink></li>
-    <li className='p-4 hover:text-xl'><Link to="/">
-    <i className='fas fa-cart-arrow-down'></i>
+    <div className='flex items-center h-20 max-w-[100%] mx-auto px-8 text-white'>
+    <h1 className='text-2xl font-semibold'>E-Commerce. <span className='p-[30px]'></span></h1>
+    
+    <ul className='hidden sm:hidden md:flex'>
+    <li className='p-4 hover:text-[#d8d8d8]'><Link to="/">Home</Link></li>
+    <li className='p-4 hover:text-[#d8d8d8]'><Link to="/">Shop</Link></li>
+    <li className='p-4 hover:text-[#d8d8d8]'><HashLink to="/#services">Services</HashLink></li>
+    <li className='p-4 hover:text-[#d8d8d8]'><HashLink to="/#footer">Contact</HashLink></li>
+    <li className='p-4'> <span className='p-[300px]'></span></li>
+    
+    <li className='p-4 hover:text-[#d8d8d8]'><Link to="/">
+    <i className='fas fa-cart-arrow-down'></i>           
     </Link></li> 
-    <li className='p-4 hover:text-xl'><Link to="/">
-    <i className='fas fa-user-plus'></i>
+    <li className='p-4'> <span className=''></span>|</li>
+    <li className='p-4 hover:text-[#d8d8d8]'><Link to="/">       
+    <i className='fas fa-user-plus'></i>                     
     </Link></li> 
+   
     </ul>
     </div>
 
@@ -42,7 +47,7 @@ setNav(!nav);
         <li className='p-4 border-b border-[#c79dd1] hover:text-white hover:bg-[##c79dd1'><a href="#About" onClick={handleNav}>About</a></li>
         <li className='p-4 border-b border-[#c79dd1] hover:text-white hover:bg-[#c79dd1'><a href="#services" onClick={handleNav}>Services</a></li>
         <li className='p-4 border-b border-[#c79dd1] hover:text-white hover:bg-[##c79dd1'><a href="#footer" onClick={handleNav}>Contact</a></li>
-        <li className='p-4 border-b border-[#c79dd1] hover:text-white hover:bg-[##c79dd1'><Link to="/signup" onClick={handleNav}>Signup</Link></li>
+        <li className='p-4 border-b border-[#c79dd1] hover:text-white hover:bg-[##c79dd1'><Link to="/signup" onClick={handleNav}><i className='fas fa-user-plus'></i>  Signup </Link></li>
         </ul>
     </div>
 </header>)
