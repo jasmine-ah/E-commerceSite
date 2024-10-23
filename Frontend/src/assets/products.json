@@ -1,0 +1,51 @@
+[
+    {
+      "id": 1,
+      "name": "Red Temptation",
+      "price": "$100.99",
+      "category": "Zara",
+      "image": "tempt.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Red Temptation",
+        "price": "$100.99",
+        "category": "Zara",
+        "image": "tempt.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Red Temptation",
+        "price": "$100.99",
+        "category": "Zara",
+        "image": "tempt.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Red Temptation",
+        "price": "$100.99",
+        "category": "Zara",
+        "image": "tempt.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Red Temptation",
+        "price": "$100.99",
+        "category": "Zara",
+        "image": "tempt.jpg"
+      },
+      {
+        "id": 6,
+        "name": "Red Temptation",
+        "price": "$100.99",
+        "category": "Zara",
+        "image": "tempt.jpg"
+      },
+      {
+        "id": 7,
+        "name": "Red Temptation",
+        "price": "$100.99",
+        "category": "Zara",
+        "image": "tempt.jpg"
+      }
+  ]

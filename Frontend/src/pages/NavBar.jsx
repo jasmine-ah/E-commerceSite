@@ -15,21 +15,21 @@ setNav(!nav);
 
     return(
 <header className='md:sticky top-0 z-40'>
-    <div className='flex items-center h-15 max-w-[100%] mx-auto px-8 text-black bg-[#f4f7fb]'>
-    <h1 className='text-2xl font-semibold text-[#F4B400]'>E-Commerce. <span className='p-[30px]'></span></h1>
+    <div className='flex items-center h-15 max-w-[100%] mx-auto px-8 text-black bg-[#fce4ec]'>
+    <h1 className='text-2xl font-semibold text-[#c7899e]'>E-Commerce. <span className='p-[30px]'></span></h1>
     
     <ul className='hidden sm:hidden md:flex'>
     <li className='p-4 hover:text-[#d8d8d8]'><Link to="/">Home</Link></li>
-    <li className='p-4 hover:text-[#d8d8d8]'><Link to="/">Shop</Link></li>
+    <li className='p-4 hover:text-[#d8d8d8]'><Link to="/productlist">Shop</Link></li>
     <li className='p-4 hover:text-[#d8d8d8]'><HashLink to="/#services">Services</HashLink></li>
     <li className='p-4 hover:text-[#d8d8d8]'><HashLink to="/#footer">Contact</HashLink></li>
     <li className='p-4'> <span className='p-[300px]'></span></li>
     
-    <li className='p-4 text-[#F4B400] hover:text-[#d8d8d8]'><Link to="/">
+    <li className='p-4 text-[#3d1f24] hover:text-[#d8d8d8]'><Link to="/">
     <i className='fas fa-cart-arrow-down'></i>           
     </Link></li> 
     <li className='p-4'> <span className=''></span>|</li>
-    <li className='p-4 text-[#F4B400] hover:text-[#d8d8d8]'><Link to="/signup">       
+    <li className='p-4 text-[#3d1f24] hover:text-[#d8d8d8]'><Link to="/signup">       
     <i className='fas fa-user-plus'></i>                     
     </Link></li> 
 

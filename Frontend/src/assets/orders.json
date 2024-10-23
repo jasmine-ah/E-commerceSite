@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1,
+      "date": "October 1, 2024",
+      "total": "$439.97",
+      "items": 3
+    },
+    {
+      "id": 2,
+      "date": "October 8, 2024",
+      "total": "$129.99",
+      "items": 1
+    },
+    {
+      "id": 3,
+      "date": "October 10, 2024",
+      "total": "$1000.99",
+      "items": 10
+    }
+  ]
