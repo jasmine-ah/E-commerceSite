@@ -1,24 +1,24 @@
 [
     {
       "id": 1,
-      "name": "Red Temptation",
+      "name": "Lacoste..",
       "price": "$100.99",
-      "category": "Zara",
-      "image": "tempt.jpg"
+      "category": "Lacoste",
+      "image": "lacoste.png"
     },
     {
         "id": 2,
         "name": "Red Temptation",
         "price": "$100.99",
         "category": "Zara",
-        "image": "tempt.jpg"
+        "image": "zara.jpg"
       },
       {
         "id": 3,
-        "name": "Red Temptation",
-        "price": "$100.99",
-        "category": "Zara",
-        "image": "tempt.jpg"
+        "name": "YSL..",
+        "price": "$200.99",
+        "category": "YSL",
+        "image": "ysl.png"
       },
       {
         "id": 4,

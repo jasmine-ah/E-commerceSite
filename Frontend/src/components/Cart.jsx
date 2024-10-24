@@ -1,22 +1,7 @@
 import React, { useState } from "react";
-
+import cart from "../assets/cart.json";
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([
-    {
-        id: 1,
-        name: "Red Temptation",
-        price: "$100.99",
-        category: "Zara",
-        image: "tempt.jpg",
-    },
-    {
-        id: 2,
-        name: "Red Temptation",
-        price: "$100.99",
-        category: "Zara",
-        image: "tempt.jpg",
-    },
-  ]);
+  const [cartItems, setCartItems] = useState(cart);
 
   const handleRemoveItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
@@ -26,6 +11,8 @@ const Cart = () => {
     (acc, item) => acc + parseFloat(item.price.slice(1)) * item.quantity,
     0
   );
+
+
 
   return (
     <div className="bg-white rounded-lg shadow-md p-8 mt-8">
@@ -62,7 +49,7 @@ const Cart = () => {
         <p className="text-lg font-bold text-gray-800">
           Total: <span>${total.toFixed(2)}</span>
         </p>
-        <button className="mt-4 bg-[#F4B400] text-white text-sm px-6 py-3 rounded-md shadow hover:bg-[#eacc79] transition duration-300 w-full">
+        <button className="mt-4 bg-[#c7899e] text-white text-sm px-6 py-3 rounded-md shadow hover:bg-[#eacc79] transition duration-300 w-full">
           Checkout
         </button>
       </div>

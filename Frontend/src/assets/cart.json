@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Lacoste..",
+        "price": "$100.99",
+        "category": "Lacoste",
+        "image": "tempt.jpg"
+      },
+      {
+          "id": 2,
+          "name": "Red Temptation",
+          "price": "$100.99",
+          "category": "Zara",
+          "image": "tempt.jpg"
+        },
+        {
+          "id": 3,
+          "name": "YSL..",
+          "price": "$200.99",
+          "category": "YSL",
+          "image": "tempt.jpg"
+        }
+]

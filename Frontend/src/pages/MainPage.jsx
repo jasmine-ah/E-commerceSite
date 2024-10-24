@@ -4,12 +4,13 @@ import { motion } from 'framer-motion';
 import {Link} from 'react-router-dom';
 import FAQ from "../components/Faq";
 import Terms from "./Terms";
-
+import product from "../assets/products.json";
 function MainPage(){
   const [isTermsOpen, setIsTermsOpen] = useState(false);
 
   const openTerms = () => setIsTermsOpen(true);
   const closeTerms = () => setIsTermsOpen(false);
+  const [products]=useState(product);
     return(
 <>
     {/************************************  hero section ********************************************/}
@@ -19,7 +20,7 @@ function MainPage(){
       >
         <div className="flex flex-col md:w-1/2 justify-center items-center px-10 z-10">
           <motion.h1
-            className="text-[#3d1f24] text-5xl md:text-7xl font-extrabold"
+            className="text-[#3d1f24] text-5xl sm:mt-5 md:text-7xl font-extrabold"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -43,7 +44,7 @@ function MainPage(){
               Shop Now
             </motion.button>
           </Link>
-          <div className="mt-12 w-full border-t-[1px] border-t-[#4a292e] opacity-50"></div>
+          {/* <div className="mt-12 w-full border-t-[1px] border-t-[#4a292e] opacity-50"></div> */}
         </div>
 
         <div className="flex md:w-1/2 items-center justify-center relative">
@@ -116,9 +117,9 @@ function MainPage(){
 </div> */}
 
 
-    {/************************************  Services section ********************************************/}
+  {/************************************  Services section ********************************************/}
 
-    <section id="services" className=" flex items-center justify-center h-[150px] ">
+    <section id="services" className=" flex items-center bg-slate-50 justify-center h-[150px] ">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 px-12">
     <i className="fas fa-award text-xl text-[#c7899e] text-center"><h2>High Quality</h2></i>
     <i className="fas fa-shipping-fast text-xl text-[#c7899e] text-center"><h2>Delivery</h2></i>
@@ -127,25 +128,53 @@ function MainPage(){
         </div>
     </section>
 
-   {/************************************  Our Favorites section ********************************************/}
+  {/************************************  Our Featured section ********************************************/}
     
-    {/* <section id="favorite" className="h-[300px]">
+   
+   <section id="featured" className="py-20 bg-white">
+  <div className="container mx-auto px-4">
+    <h2 className="text-4xl font-bold text-center mb-12 text-[#c7899e]">
+      Featured Products
+    </h2>
+    <div className="overflow-x-auto scroll-smooth scrollbar-hide">
+      <div className="flex space-x-8 snap-x snap-mandatory">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 w-72 shrink-0 snap-center"
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-48 object-cover rounded-t-lg"
+            />
+            <div className="p-4">
+              <h3 className="text-xl font-semibold mb-2 text-[#6b7b8c]">
+                {product.name}
+              </h3>
+              <p className="text-lg font-bold text-[#c7899e]">{product.price}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
     
-    </section> */}
 {/************************************  feedback section ********************************************/}
 <section id='feedback' className='h-[80vh] bg-gradient-to-br from-white to-gray-100 flex flex-col items-center justify-center px-8 py-10'>
   <div className='absolute max-w-5xl w-full text-center'>
-    <h2 className='text-4xl font-extrabold mb-8 text-[#f4b400]'>Get in Touch</h2>
-    <p className='text-muted max-w-3xl mx-auto mb-10 text-[#8e8670]'>
+    <h2 className='text-4xl font-extrabold mb-8 text-[#3d1f24]'>Get in Touch</h2>
+    <p className='text-muted max-w-3xl mx-auto mb-10 text-[#c7899e]'>
       Whether you want to share feedback, or just want to say hello, we're here to listen.
     </p>
     <form className='space-y-8'>
       <div className='flex flex-col md:flex-row gap-8 mb-12'>
-        <input type='text' placeholder='Your Name' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#f4b400]' />
-        <input type='email' placeholder='Your Email' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#f4b400]' />
+        <input type='text' placeholder='Your Name' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#c7899e]' />
+        <input type='email' placeholder='Your Email' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#c7899e]' />
       </div>
-      <textarea placeholder='Your Message' rows='6' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#f4b400]'></textarea>
-      <button type='submit' className='px-8 py-3 bg-[#f4b400] text-black font-semibold rounded-full hover:bg-[#eacc79] transition duration-300'>
+      <textarea placeholder='Your Message' rows='6' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#c7899e]'></textarea>
+      <button type='submit' className='px-8 py-3 bg-[#c7899e] text-black font-semibold rounded-full hover:bg-[#fbdee3] transition duration-300'>
         Send Message
       </button>
     </form>
@@ -159,13 +188,13 @@ function MainPage(){
 </section>
  {/************************************  Footer section ********************************************/}
 
- <footer id="footer" className="bg-gray-900 text-white pt-10">
+ <footer id="footer" className="bg-[#3d1f24] text-white pt-10">
   <div className="container mx-auto px-4">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
       <div className="col-span-1">
-        <h3 className="text-xl font-semibold text-[#f4b400] mb-4">E-commerce Site</h3>
+        <h3 className="text-xl font-semibold text-[#c7899e] mb-4">E-commerce Site</h3>
         <p className="text-sm mb-4">
-          Explore the latest fashion trends and find inspiration for your next style statement.
+          Explore the latest trends and find inspiration for your next statement scent.
         </p>
         <ul className="space-y-2">
           <li><a href="#" className="hover:text-gray-300 transition-colors duration-200">About Us</a></li>
@@ -178,7 +207,7 @@ function MainPage(){
         </ul>
       </div>
       <div className="col-span-1">
-        <h3 className="text-xl font-semibold text-[#f4b400] mb-4">Quick Links</h3>
+        <h3 className="text-xl font-semibold text-[#c7899e] mb-4">Quick Links</h3>
         <ul className="space-y-2">
           <li><a href="#faq" className="hover:text-gray-300 transition-colors duration-200">Shop</a></li>
           <li><a href="#" className="hover:text-gray-300 transition-colors duration-200">Services</a></li>
@@ -187,24 +216,24 @@ function MainPage(){
         </ul>
       </div>
       <div className="col-span-1">
-        <h3 className="text-xl font-semibold text-[#f4b400] mb-4">Follow Us</h3>
+        <h3 className="text-xl font-semibold text-[#c7899e] mb-4">Follow Us</h3>
         <div className="flex space-x-4">
-          <a href="#" className="text-[#f4b400] hover:text-gray-300 transition-colors duration-200 p-2 rounded-full">
+          <a href="#" className="text-[#fbdce0] hover:text-gray-300 transition-colors duration-200 p-2 rounded-full">
             <i className="fab fa-facebook-f"></i>
           </a>
-          <a href="#" className="text-[#f4b400] hover:text-gray-300 transition-colors duration-200 p-2 rounded-full">
+          <a href="#" className="text-[#fbdce0] hover:text-gray-300 transition-colors duration-200 p-2 rounded-full">
             <i className="fab fa-twitter"></i>
           </a>
-          <a href="#" className="text-[#f4b400] hover:text-gray-300 transition-colors duration-200 p-2 rounded-full">
+          <a href="#" className="text-[#fbdce0] hover:text-gray-300 transition-colors duration-200 p-2 rounded-full">
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="#" className="text-[#f4b400] hover:text-gray-300 transition-colors duration-200 p-2 rounded-full">
+          <a href="#" className="text-[#fbdce0] hover:text-gray-300 transition-colors duration-200 p-2 rounded-full">
             <i className="fab fa-linkedin-in"></i>
           </a>
         </div>
       </div>
       <div className="col-span-1">
-        <h3 className="text-xl font-semibold text-[#f4b400] mb-4">Contact</h3>
+        <h3 className="text-xl font-semibold text-[#c7899e] mb-4">Contact</h3>
         <ul className="space-y-2">
           <li><span className="hover:text-gray-300 transition-colors duration-200">Email:</span> info@ecommercesite.com</li>
           <li><span className="hover:text-gray-300 transition-colors duration-200">Phone:</span> +123 456 7890</li>

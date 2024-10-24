@@ -6,16 +6,16 @@ const ProductCard = ({ product }) => {
       <img
         src={product.image}
         alt={product.name}
-        className="h-48 w-full object-cover"
+        className="h-48 w-full object-center"
       />
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
         <p className="text-gray-500 mt-1">{product.category}</p>
-        <p className="text-[#f4b400] text-xl font-bold mt-2">{product.price}</p>
+        <p className="text-[#c7899e] text-xl font-bold mt-2">{product.price}</p>
       </div>
       <div className="p-4 border-t">
         <Link to="/product">
-        <button className="bg-[#f4b400] text-white text-sm px-4 py-2 rounded-md shadow hover:bg-[#eacc79] transition duration-300 w-full">
+        <button className="bg-[#c7899e] text-white text-sm px-4 py-2 rounded-md shadow hover:bg-[#fce4ec] transition duration-300 w-full">
           View
         </button>
         </Link>

@@ -21,7 +21,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-8">
+    <div className="bg-white rounded-lg shadow-md p-8 h-[50%] mt-8">
       <div className="flex items-center space-x-6">
         <img
           className="w-24 h-24 rounded-full object-cover shadow-lg"
@@ -51,7 +51,7 @@ const UserProfile = () => {
       </div>
       <div className="mt-8">
         <button
-          className="bg-[#F4B400] text-white text-sm px-6 py-2 rounded-md shadow hover:bg-[#eacc79] transition duration-300"
+          className="bg-[#c7899e] text-white text-sm px-6 py-2 rounded-md shadow hover:bg-[#eacc79] transition duration-300"
           onClick={handleEditClick}
         >
           {isEditing ? "Cancel" : "Edit Profile"}

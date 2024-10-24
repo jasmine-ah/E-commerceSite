@@ -17,10 +17,6 @@ const FAQ = () => {
             answer: "Yes, we ship to over 20 cities in Ethiopia. Shipping rates will vary based on destination."
         },
         {
-            question: "How can I track my order?",
-            answer: "Once your order has shipped, you will receive an email with a tracking number and a link to track your order."
-        },
-        {
             question: "What payment methods do you accept?",
             answer: "We accept credit cards and cash on delivery."
         },
@@ -31,7 +27,7 @@ const FAQ = () => {
     };
 
     return (
-        <section id="faq" className="bg-[#eacc79] p-8 border border-b-[60px] border-[#f4f7fb]">
+        <section id="faq" className="bg-[#fce4ec] p-8 border border-b-[60px] border-[#f4f7fb]">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Frequently Asked Questions</h2>
             <div className="max-w-2xl mx-auto">
                 {faqs.map((faq, index) => (

@@ -8,11 +8,11 @@ import Terms from "./pages/Terms";
 import Product from "./pages/Product";
 import ProductList from "./components/ProductList";
 import ProfilePage from "./pages/ProfilePage";
-
+import About from "./pages/About";
 function App(){
 return(
   <BrowserRouter> 
-  <div className='bg-slate-50 bg-cover bg-center'>
+  <div className='bg-[#fbdde2] bg-cover bg-center'>
     <NavBar/>
     <Routes>
     <Route path="/" element={<MainPage/>}/>
@@ -22,6 +22,7 @@ return(
     <Route path="/product" element={<Product/>}/>
     <Route path="/productlist" element={<ProductList/>}/>
     <Route path="/profile" element={<ProfilePage/>}/>
+    <Route path="/about" element={<About/>}/>
     </Routes>
   </div>
   </BrowserRouter>
