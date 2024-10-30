@@ -9,6 +9,7 @@ import Product from "./pages/Product";
 import ProductList from "./components/ProductList";
 import ProfilePage from "./pages/ProfilePage";
 import About from "./pages/About";
+import Payment from "./pages/Payment";
 function App(){
 return(
   <BrowserRouter> 
@@ -23,6 +24,8 @@ return(
     <Route path="/productlist" element={<ProductList/>}/>
     <Route path="/profile" element={<ProfilePage/>}/>
     <Route path="/about" element={<About/>}/>
+    <Route path="/payment" element={<Payment/>}/>
+
     </Routes>
   </div>
   </BrowserRouter>

@@ -21,8 +21,8 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-8 h-[50%] mt-8">
-      <div className="flex items-center space-x-6">
+    <div className="bg-white rounded-lg shadow-md p-8 h-[100%] mt-8">
+      <div className="flex items-center space-x-2">
         <img
           className="w-24 h-24 rounded-full object-cover shadow-lg"
           src="cart.png"

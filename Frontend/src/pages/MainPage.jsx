@@ -209,8 +209,8 @@ function MainPage(){
       <div className="col-span-1">
         <h3 className="text-xl font-semibold text-[#c7899e] mb-4">Quick Links</h3>
         <ul className="space-y-2">
-          <li><a href="#faq" className="hover:text-gray-300 transition-colors duration-200">Shop</a></li>
-          <li><a href="#" className="hover:text-gray-300 transition-colors duration-200">Services</a></li>
+          <li><a href="/productlist" className="hover:text-gray-300 transition-colors duration-200">Shop</a></li>
+          <li><a href="#services" className="hover:text-gray-300 transition-colors duration-200">Services</a></li>
           <li><a href="#" className="hover:text-gray-300 transition-colors duration-200">Contact</a></li>
           <li><a href="#faq" className="hover:text-gray-300 transition-colors duration-200">FAQs</a></li>
         </ul>

@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import cart from "../assets/cart.json";
+import Payment from "../pages/Payment";
 const Cart = () => {
   const [cartItems, setCartItems] = useState(cart);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
 
+  const openPayment = () => setIsPaymentOpen(true);
+  const closePayment = () => setIsPaymentOpen(false);
   const handleRemoveItem = (id) => {
     setCartItems(cartItems.filter((item) => item.id !== id));
   };
@@ -49,9 +53,14 @@ const Cart = () => {
         <p className="text-lg font-bold text-gray-800">
           Total: <span>${total.toFixed(2)}</span>
         </p>
-        <button className="mt-4 bg-[#c7899e] text-white text-sm px-6 py-3 rounded-md shadow hover:bg-[#eacc79] transition duration-300 w-full">
+        <button onClick={openPayment} className="mt-4 bg-[#c7899e] text-white text-sm px-6 py-3 rounded-md shadow hover:bg-[#eacc79] transition duration-300 w-full">
           Checkout
+        
         </button>
+        {isPaymentOpen && (
+                <Payment onClose={closePayment} />
+            )}
+       
       </div>
     </div>
   );
