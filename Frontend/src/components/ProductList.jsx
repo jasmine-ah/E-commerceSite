@@ -1,9 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
-import products from "../assets/products.json";
 
 const ProductList = () => {
+  const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState(products);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/products/all');
+        const data = await response.json();
+        setProducts(data);
+        setFilteredProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleSearch = (category) => {
     if (!category || category.trim() === "") {
@@ -27,8 +42,8 @@ const ProductList = () => {
         </h1>
         <select onChange={(e) => handleSearch(e.target.value)} className="w-[20%] border-black">
           <option value="">All Categories</option>
-          {categoryOptions.map((category) => (
-            <option key={category} value={category}>
+          {categoryOptions.map((category, index) => (
+            <option key={index} value={category}>
               {category}
             </option>
           ))}
@@ -38,7 +53,7 @@ const ProductList = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import axios from "axios";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Link,useNavigate} from 'react-router-dom';
 
@@ -27,16 +28,28 @@ function Signup() {
         return Object.keys(errors).length === 0;
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
-       
         const isValid = validateForm();
         if (!isValid) {
             return;
         }
-
+        try {
+            const response = await axios.post('http://localhost:8080/api/auth/signup', {
+                name: formData.name, 
+                email: formData.email,
+                password: formData.password,
+            });
+            console.log(response.data);            
+            Navigate('/login'); 
+        } catch (error) {
+            console.error('Error signing up:', error);
+            if (error.response && error.response.data) {
+                setErrors({ ...errors, api: error.response.data.message });
+            }
+        }
     };
+
 
     return (
         <>
@@ -72,6 +85,7 @@ function Signup() {
                             {errors.password && <p className='text-sm text-red-600'>{errors.password}</p>}
                         </div>
 
+                    {errors.api && <p className='text-sm text-red-600'>{errors.api}</p>}
                         <button type='submit' className="mt-8 w-full sm:w-[200px] px-6 py-3 border-2 border-white bg-[#c7899e] text-white font-semibold rounded-full hover:bg-[#eacc79] transition duration-300 text-center">
                             SIGN UP
                         </button>
@@ -80,6 +94,6 @@ function Signup() {
             </div>
         </>
     );
-}
+};
 
 export default Signup;

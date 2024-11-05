@@ -1,12 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
-  const [user, setUser] = useState({
-    name: "Abebe Kebede",
-    email: "abe@gmail.com",
-    joined: "October 20, 2024",
-  });
+  // const [user, setUser] = useState({
+  //   name: "Abebe Kebede",
+  //   email: "abe@gmail.com",
+  //   joined: "October 20, 2024",
+  // });
+  const userId = localStorage.getItem('userId');
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/api/auth/${userId}`);
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      }
+    };
+    fetchUser();
+  }, [userId]);
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -19,32 +35,24 @@ const UserProfile = () => {
   const handleSave = () => {
     setIsEditing(false);
   };
+  if (!user) {
+    return <p>Loading user data...</p>;
+  }
 
   return (
     <div className="bg-white rounded-lg shadow-md p-8 h-[100%] mt-8">
       <div className="flex items-center space-x-2">
-        <img
-          className="w-24 h-24 rounded-full object-cover shadow-lg"
-          src="cart.png"
-          alt={user.name}
-        />
+        <img className="w-24 h-24 rounded-full object-cover shadow-lg" src="cart.png" alt={user.name}/>
         <div>
           {isEditing ? (
             <div>
-              <input
-                className="block w-full p-2 border border-gray-300 rounded mt-1"
-                type="text"
-                name="name"
-                value={user.name}
-                onChange={handleChange}
-              />
-            
+              <input className="block w-full p-2 border border-gray-300 rounded mt-1" type="text" name="name" value={user.name} onChange={handleChange}/>
             </div>
           ) : (
             <>
               <h2 className="text-2xl font-bold text-gray-800">{user.name}</h2>
               <p className="text-gray-600">{user.email}</p>
-              <p className="text-gray-500 mt-2">Joined: {user.joined}</p>
+              <p className="text-gray-500 mt-2">Joined: {user.createdAt}</p>
             </>
           )}
         </div>
@@ -57,11 +65,7 @@ const UserProfile = () => {
           {isEditing ? "Cancel" : "Edit Profile"}
         </button>
         {isEditing && (
-          <button
-            className="bg-green-600 text-white text-sm px-6 py-2 rounded-md shadow hover:bg-green-500 transition duration-300 ml-4"
-            onClick={handleSave}
-          >
-            Save
+          <button className="bg-green-600 text-white text-sm px-6 py-2 rounded-md shadow hover:bg-green-500 transition duration-300 ml-4" onClick={handleSave}>Save
           </button>
         )}
       </div>

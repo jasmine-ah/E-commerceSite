@@ -2,7 +2,7 @@ import React from "react";
 
 function About() {
   return (
-    <section className="bg-gradient-to-b from-purple-100 to-pink-50 py-20">
+    <section className="bg-[#fce3eb] py-40 h-full">
       <div className="container mx-auto px-4 flex flex-col">
         <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
           Our Story

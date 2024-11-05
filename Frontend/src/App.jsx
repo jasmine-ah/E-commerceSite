@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter,Routes,Route,Navigate } from 'react-router-dom';
+import { BrowserRouter,Routes,Route,useLocation } from 'react-router-dom';
 import NavBar from "./pages/NavBar";
 import MainPage from "./pages/MainPage";
 import Signup from "./pages/Signup";
@@ -10,26 +10,38 @@ import ProductList from "./components/ProductList";
 import ProfilePage from "./pages/ProfilePage";
 import About from "./pages/About";
 import Payment from "./pages/Payment";
+import AdminDashboard from "./pages/AdminDashboard";
+
 function App(){
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');;
+
 return(
-  <BrowserRouter> 
-  <div className='bg-[#fbdde2] bg-cover bg-center'>
-    <NavBar/>
+  <div className='bg-[#fce3eb] bg-cover bg-center'>
+  {!isAdminRoute && <NavBar />}
     <Routes>
     <Route path="/" element={<MainPage/>}/>
     <Route path="/signup" element={<Signup/>}/>
     <Route path="/login" element={<Login/>}/>
     <Route path="/terms" element={<Terms/>}/>
-    <Route path="/product" element={<Product/>}/>
+    <Route path="/product/:productId" element={<Product/>}/>
     <Route path="/productlist" element={<ProductList/>}/>
     <Route path="/profile" element={<ProfilePage/>}/>
     <Route path="/about" element={<About/>}/>
     <Route path="/payment" element={<Payment/>}/>
+    <Route path="/admin" element={<AdminDashboard/>}/>
 
     </Routes>
   </div>
-  </BrowserRouter>
 )
 }
+function AppWrapper() {
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
+}
 
-export default App;
+export default AppWrapper;
+// export default App;

@@ -36,7 +36,7 @@ function NavBar() {
         <HashLink to="/#footer" className='transition duration-300 ease-in-out hover:text-[#c7899e]'>Contact<span className='absolute bottom-0 left-0 w-full h-1 bg-[#c7899e] scale-x-0 transition-transform duration-300 group-hover:scale-x-100'></span></HashLink>
     </li>
     <li className='flex items-center space-x-4'>
-        <Link to="/" className='flex items-center transition duration-300 ease-in-out hover:text-[#c7899e]'><i className='fas fa-cart-arrow-down text-xl'></i></Link>
+        <Link to="/admin" className='flex items-center transition duration-300 ease-in-out hover:text-[#c7899e]'><i className='fas fa-cart-arrow-down text-xl'></i></Link>
         <span>|</span>
         <Link to="/signup" className='flex items-center transition duration-300 ease-in-out hover:text-[#c7899e]'><i className='fas fa-user-plus text-xl'></i></Link>
     </li>

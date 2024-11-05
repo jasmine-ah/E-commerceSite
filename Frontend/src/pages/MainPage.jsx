@@ -241,7 +241,7 @@ function MainPage(){
         </ul>
       </div>
     </div>
-    <div className="bg-gray-800 py-4 mt-auto">
+    <div className="py-4 mt-auto">
       <p className="text-center text-sm">&copy; 2024 E-commerce Site. All rights reserved.</p>
     </div>
   </div>

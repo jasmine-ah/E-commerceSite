@@ -16,8 +16,6 @@ const Cart = () => {
     0
   );
 
-
-
   return (
     <div className="bg-white rounded-lg shadow-md p-8 mt-8">
       <h3 className="text-2xl font-bold text-gray-800">Your Cart</h3>
@@ -60,7 +58,6 @@ const Cart = () => {
         {isPaymentOpen && (
                 <Payment onClose={closePayment} />
             )}
-       
       </div>
     </div>
   );
