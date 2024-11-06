@@ -65,6 +65,24 @@ exports.login = async (req, res) => {
   }
 };
 
+/// Get all user
+exports.getAllUser = async (req, res) => {
+  try {
+    console.log("Fetching all users");
+
+    const users = await User.find().select('_id name email'); 
+
+    if (!users || users.length === 0) {
+      return res.status(404).json({ message: 'No users found' });
+    }
+
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error.message);
+    res.status(500).json({ message: 'Error fetching users', details: error.message });
+  }
+};
+
 // Get user by ID
 exports.getUser= async (req, res) => {
   try {
@@ -77,7 +95,7 @@ exports.getUser= async (req, res) => {
 };
 
 // Update user
-exports.updateUser= async (req, res) => {
+exports.updateUser = async (req, res) => {
   try {
     const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!user) return res.status(404).json({ message: 'User not found' });
@@ -86,12 +104,4 @@ exports.updateUser= async (req, res) => {
     res.status(400).json({ message: 'Error updating user' });
   }
 };
-// Get all user
-exports.getAllUser= async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (error) {
-    res.status(500).json({ message: 'Error fetching users' });
-  }
-};
+

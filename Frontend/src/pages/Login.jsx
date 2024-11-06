@@ -41,7 +41,7 @@ function Login() {
             localStorage.setItem("token", token);
             localStorage.setItem("userId", userId);
             // console.log(response.data);            
-            Navigate('/profile'); 
+            Navigate('/productlist'); 
         } catch (error) {
             console.error('Error logging in:', error);
             if (error.response && error.response.data) {

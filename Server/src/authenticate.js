@@ -8,9 +8,9 @@ exports.authenticate = (req, res, next) => {
     if (!token) return res.status(401).json({ message: 'Access denied. No token provided.' });
 
     jwt.verify(token, SECRET_KEY, (err, decoded) => {
-        if (err) return res.status(401).json({ message: 'Invalid token.' }); // Changed to 401
+        if (err) return res.status(401).json({ message: 'Invalid token.' });
 
-        req.userId = decoded.userId; // Ensure this matches the token payload
+        req.userId = decoded.userId; 
         next();
     });
 };
