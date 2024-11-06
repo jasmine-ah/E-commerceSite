@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Payment from "../pages/Payment";
-
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const userId = localStorage.getItem("userId");
-  
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const [orderTotal, setOrderTotal] = useState(0);
+  const token = localStorage.getItem("token");
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const token = localStorage.getItem("token");
+        
         const response = await fetch(`http://localhost:8080/api/cart/${userId}`, {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`, 
@@ -28,26 +32,14 @@ const Cart = () => {
     fetchCart();
   }, [userId]);
 
-  const handleRemoveItem = async (id) => {
+  const handleRemoveItem = async (productId) => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.delete(`http://localhost:8080/api/cart/${id}`, {
-        headers: {
-          "Authorization": `Bearer ${localStorage.getItem("token")}`, 
-            "Content-Type": "application/json" 
-        },
-      });
-
-      if (response.status === 200) {
-        setCartItems(response.data.products);  
-      } else {
-        console.error("Failed to remove item:", response.data.message);
-      }
+      await axios.delete(`http://localhost:8080/api/cart/${userId}/${productId}`);
+      setCartItems(cartItems.filter((item) => item.productId !== productId));
     } catch (error) {
-      console.error("Error removing item from cart:", error);
+      console.error("Error removing item:", error);
     }
   };
-
   const openPayment = () => setIsPaymentOpen(true);
   const closePayment = () => setIsPaymentOpen(false);
 
@@ -55,6 +47,24 @@ const Cart = () => {
     (acc, item) => acc + item.quantity * item.productId.price,
     0
   );
+  
+  const handleCheckout = async () => {
+    setIsPaymentOpen(true);
+    try {
+      const products = cartItems.map(item => ({
+        productId: item.productId._id,
+        quantity: item.quantity
+      }));
+      const response = await axios.post('http://localhost:8080/api/cart/checkout', { userId, products });
+   
+      setIsPaymentOpen(false);
+      
+      setCartItems([]);
+    } catch (error) {
+      console.error("Error during checkout:", error);
+     
+    }
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-md p-8 mt-8 max-w-4xl mx-auto">
@@ -78,7 +88,7 @@ const Cart = () => {
               <div className="flex items-center space-x-4">
                 <p className="text-lg font-semibold text-gray-800">${(item.quantity * item.productId.price).toFixed(2)}</p>
                 <button
-                  onClick={() => handleRemoveItem(item._id)}
+                  onClick={() => handleRemoveItem(item.productId._id)}
                   className="text-red-500 hover:text-red-700 text-sm"
                 >
                   Remove
@@ -98,7 +108,7 @@ const Cart = () => {
             <span>${total.toFixed(2)}</span>
           </p>
           <button
-            onClick={openPayment}
+            onClick={handleCheckout}
             className="mt-6 bg-blue-600 text-white px-6 py-3 rounded-md w-full hover:bg-blue-700 transition duration-300"
           >
             Proceed to Checkout

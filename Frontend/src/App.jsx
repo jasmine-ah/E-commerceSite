@@ -11,6 +11,7 @@ import ProfilePage from "./pages/ProfilePage";
 import About from "./pages/About";
 import Payment from "./pages/Payment";
 import AdminDashboard from "./pages/AdminDashboard";
+import OrderConfirm from "./components/OrderConfirm";
 
 function App(){
   const location = useLocation();
@@ -30,6 +31,7 @@ return(
     <Route path="/about" element={<About/>}/>
     <Route path="/payment" element={<Payment/>}/>
     <Route path="/admin" element={<AdminDashboard/>}/>
+    <Route path="/order/:orderId" element={<OrderConfirm/>}/>
 
     </Routes>
   </div>
