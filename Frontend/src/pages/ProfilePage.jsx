@@ -12,7 +12,7 @@ const ProfilePage = () => {
     switch (activeTab) {
       case "cart":
         return (
-          <div className="max-h-96 overflow-y-auto bg-white shadow-lg rounded-lg p-8 w-full md:w-3/4 lg:w-2/3">
+          <div className="max-h-[100%] overflow-y-auto bg-white shadow-lg rounded-lg p-8 w-full md:w-3/4 lg:w-2/3">
             <Cart />
           </div>
         );
@@ -30,7 +30,7 @@ const ProfilePage = () => {
         );
       default:
         return (
-          <div className="max-h-96 overflow-y-auto bg-white shadow-lg rounded-lg p-8 w-full md:w-3/4 lg:w-2/3">
+          <div className=" overflow-y-auto bg-[#fce3eb] shadow-lg rounded-lg p-8 w-full md:w-3/4 lg:w-2/3">
             <UserProfile />
           </div>
         );
@@ -38,13 +38,13 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-blue-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-[#fce3eb] to-blue-50 py-12">
       <div className="container mx-auto px-6 md:px-12">
         <h1 className="text-5xl font-extrabold text-center text-gray-900 mb-10 tracking-wide">
           My Profile
         </h1>
 
-        <div className="flex justify-center space-x-4 mb-10">
+        <div className="flex justify-center space-x-2 mb-10">
           <button
             className={`flex items-center p-3 rounded-lg transition-transform transform hover:scale-105 duration-300 ${activeTab === "profile" ? "bg-blue-100" : "bg-white"}`}
             onClick={() => setActiveTab("profile")}

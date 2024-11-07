@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import cart from '../assets/cart.json';
+import {Modal, Box, TextField, Button } from "@mui/material";
 function Payment({ onClose }) {
     const [formData, setFormData] = useState({
         cardNumber: '',
@@ -20,6 +21,8 @@ function Payment({ onClose }) {
     };
 
     return (
+        <Modal open={openPaymentInfo} onClose={handleClosePayment}>
+        <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 400, bgcolor: 'background.paper', p: 4, boxShadow: 24, borderRadius: 1 }}>
         <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6" onClick={onClose}>
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full">
                 
@@ -34,6 +37,7 @@ function Payment({ onClose }) {
                         </li>
                         ))}
                     </div>
+
                     {/* <div className="flex justify-between text-gray-600 mb-2">
                         <p>Item 2</p>
                         <p>$35.00</p>
@@ -114,6 +118,8 @@ function Payment({ onClose }) {
                 </div>
             </div>
         </div>
+        </Box>
+        </Modal>
     );
 }
 

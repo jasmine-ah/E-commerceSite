@@ -47,7 +47,7 @@ const Product = () => {
       navigate("/profile");
     } catch (error) {
       console.error("Error adding product to cart:", error);
-      alert("Failed to add product to cart.");
+      alert("Failed to add product to cart. Please login first!");
     }
   };
 

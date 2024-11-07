@@ -3,6 +3,7 @@ const Product = require('../models/Product');
 //const { authenticate } = require('../authenticate');
 const User = require('../models/Users');
 const Order = require('../models/Order');
+
 exports.addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
@@ -61,41 +62,40 @@ exports.addToCart = async (req, res) => {
 // };
 
 
-exports.removeFromCart = async (req, res) => {
-  const { userId } = req; 
-  const { productId } = req.params;
-
+exports.deleteCartItem = async (req, res) => {
   try {
- 
-    const cart = await Cart.findOne({ userId }).populate('products.productId');
-    if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
+    // const cart = await Cart.findById(req.params.id);
+    const userId = req.userId;
+
+  const userCart = await Cart.findOne({userId})
+    const deletedCartItem = await userCart.products.id(req.params).remove();
+    if (!deletedCartItem) {
+      console.error(`Product with ID ${req.params.id} not found.`);
+      return res.status(404).json({ message: 'Product not found' });
     }
-
-    const productIndex = cart.products.findIndex(item => item.productId._id.toString() === productId);
-    if (productIndex === -1) {
-      return res.status(404).json({ message: "Product not found in cart" });
-    }
-
-    cart.products.splice(productIndex, 1);
-    let totalAmount = 0;
-    cart.products.forEach(item => {
-      
-      if (item.productId && item.productId.price && !isNaN(item.productId.price)) {
-        totalAmount += item.productId.price * item.quantity;
-      }
-    });
-
-    cart.totalAmount = totalAmount;
-    await cart.save(); 
-
-    res.status(200).json(cart);
+    res.json({ message: 'Product deleted successfully' });
   } catch (error) {
-    console.error("Error removing item from cart:", error);
-    res.status(500).json({ message: "Internal server error" });
+    console.error('Error deleting product:', error.message);
+    res.status(500).json({ message: 'Error deleting product', error: error.message });
   }
 };
 
+// exports.deleteFromCart = async (req, res) => {
+//   try {
+//     const { cartId, productId } = req.params;
+    
+//     const updatedCart = await removeFromCart(cartId, productId);
+    
+//     if (!updatedCart) {
+//       return res.status(404).json({ message: 'Product removed successfully' });
+//     }
+    
+//     res.json(updatedCart);
+//   } catch (error) {
+//     console.error('Error removing product from cart:', error);
+//     res.status(500).json({ message: 'Failed to remove product from cart' });
+//   }
+// };
 
 
 exports.getCart = async (req, res) => {
@@ -120,7 +120,7 @@ exports.getCart = async (req, res) => {
 
 // Checkout and place order
 exports.checkout = async (req, res) => {
-  const { userId } = req.userId;
+  const userId  = req.userId;
   const { cartItems } = req.body;
 
   try {

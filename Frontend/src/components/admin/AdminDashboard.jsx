@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography } from "@mui/material";
 import Sidebar from './Sidebar';
 import ProductManagement from './ProductManage';
 import UserManagement from './UserManage';
+import Reports from './Reports';
 
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState('products');
@@ -22,7 +23,7 @@ const AdminDashboard = () => {
           {activeTab === 'products' && <ProductManagement />}
           {activeTab === 'users' && <UserManagement />}
           {activeTab === 'orders' && <div>Orders Management Component Coming Soon</div>}
-          {activeTab === 'reports' && <div>Reports Component Coming Soon</div>}
+          {activeTab === 'reports' && <Reports />}
         </section>
       </main>
     </div>

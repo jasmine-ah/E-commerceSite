@@ -13,17 +13,25 @@ function UserManage() {
 
   const fetchUsers = async () => {
     try {
-      setLoading(true);
-      setError(null);
-      const response = await axios.get('http://localhost:8080/api/auth/allUser');
-      setUsers(response.data);
+    setLoading(true);
+    setError(null);
+    const response = await axios.get('http://localhost:8080/api/auth/allUser', {
+      
+      headers: {
+        
+        "Authorization": `Bearer ${localStorage.getItem("token")}`, 
+        "Content-Type": "application/json" 
+      },
+      
+    });
+    setUsers(response.data);
     } catch (err) {
-      console.error('Error fetching users:', err);
-      setError('Failed to load users. Please try again later.');
+    console.error('Error fetching users:', err);
+    setError('Failed to load users. Please try again later.');
     } finally {
-      setLoading(false);
-    }
-  };
+    setLoading(false);
+}
+};
 
   return (
     <div className="p-8">

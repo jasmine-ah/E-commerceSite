@@ -65,19 +65,12 @@ exports.login = async (req, res) => {
 /// Get all user
 exports.getAllUser = async (req, res) => {
   try {
-    console.log("Fetching all users");
-
-    const users = await User.find().select('_id name email'); 
-
-    if (!users || users.length === 0) {
-      return res.status(404).json({ message: 'No users found' });
-    }
-
-    res.status(200).json(users);
+    const user = await User.find();
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    res.json(user);
   } catch (error) {
-    console.error('Error fetching users:', error.message);
-    res.status(500).json({ message: 'Error fetching users', details: error.message });
-  }
+    res.status(500).json({ message: 'Error fetching users' });
+  };
 };
 
 // Get user by ID
@@ -102,3 +95,44 @@ exports.updateUser = async (req, res) => {
   }
 };
 
+// active users
+exports.activeUsers = async (req, res) => {
+  try {
+    const activeUsers = await User.aggregate([
+      {
+        $match: {
+          lastActive: { $gte: new Date(new Date().setDate(new Date().getDate() - 7)) }
+        }
+      },
+      {
+        $group: {
+          _id: { $dayOfWeek: "$lastActive" },
+          count: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          day: "$_id",
+          count: 1,
+          _id: 0
+        }
+      }
+    ]);
+
+    res.status(200).json(activeUsers);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch active users report', error });
+  }
+};
+
+
+exports.activeUsers = async (req,res)=>{
+  try {
+    const userId = await User.find(_id); 
+    const users = await User.countDocuments(userId);
+
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching uesr' });
+  }
+}

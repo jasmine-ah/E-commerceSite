@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const userRoutes = require('./src/routes/userRoutes');
 const productRoutes = require('./src/routes/productRoutes');
 const cartRoutes = require('./src/routes/cartRoutes'); 
-
+const reportRoutes = require('./src/routes/reportRoutes');
+const checkAndCreateAdminUser = require('./src/init')
 require('dotenv').config();
 
 const app = express();
@@ -20,7 +21,11 @@ app.use(express.json());
 app.use('/api/auth', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/report', reportRoutes);
 
+checkAndCreateAdminUser().then(()=>{
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+});
+
