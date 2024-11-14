@@ -3,22 +3,26 @@ import axios from "axios";
 import Payment from "../pages/Payment";
 import { useNavigate } from 'react-router-dom';
 import {Modal, Box, TextField, Button } from "@mui/material";
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const userId = localStorage.getItem("userId");
   const [openPaymentInfo, setOpenPaymentInfo] = useState(false);
-  const [payment, setPayment] = useState({ _id: "", name: "", description: "", price: "", imageUrl: "", category: "" });
+  const [payment, setPayment] = useState({ _id: "", name: "", description: "", price: "", imageUrl: [""], category: "" });
   const [totalAmount, setTotalAmount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [orderTotal, setOrderTotal] = useState(0);
   const token = localStorage.getItem("token");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); 
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   
-    alert('Payment Successful');
+    // alert('Payment Successful');
 };
 const [formData, setFormData] = useState({
   cardNumber: '',
@@ -75,36 +79,20 @@ try {
     (acc, item) => acc + item.quantity * item.productId.price,
     0
   );
-  
-  // const handleCheckout = async () => {
-    
-  //   try {
-  //     setOpenPaymentInfo(true);
-  //     // const products = cartItems.map(item => ({
-  //     //   productId: item.productId._id, 
-  //     //   quantity: item.quantity    
-  //     // }));
-  
-  //     await axios.post('http://localhost:8080/api/cart/checkout', {} , {
-  //       headers: {
-  //         "Authorization": `Bearer ${localStorage.getItem("token")}`, 
-  //         "Content-Type": "application/json" 
-  //       },
-  //     });
-  //     setOpenPaymentInfo(false);
-  //     setCartItems([]);
-  //   } catch (error) {
-  //     console.error("Error during checkout:", error);
-  //   }
-  // };
 
   const handleCheckout = async () => {
     setIsLoading(true);
-    
+    const selectedCartItems = cartItems.filter(item => selectedItems.includes(item._id));
+    const totalAmount = selectedCartItems.reduce(
+      (acc, item) => acc + item.quantity * item.productId.price,
+      0
+    );
+
     try {
       const response = await axios.post('http://localhost:8080/api/cart/checkout', {
-        cartItems,
+        cartItems: selectedCartItems,
         totalAmount,
+        selectedItems,
         userId: localStorage.getItem("userId")
       }, {
         headers: {
@@ -113,21 +101,46 @@ try {
         }
       });
 
-      if (response.data.success) {
-        // alert('Payment Successful');
-        fetchCart();  
-      } else {
-        alert('Payment failed');
-      }
+      toast.success("Payment Successful!", {
+        position: "bottom-right", 
+        autoClose: 3000,           
+        hideProgressBar: true,     
+        closeOnClick: true,        
+        pauseOnHover: false,    
+        style: {
+          backgroundColor: '#c7899e', 
+          color: 'white' 
+        }
+      });
+      fetchCart();
     } catch (error) {
       console.error("Checkout error:", error);
-      alert('Checkout failed');
+      toast.error("Unable to CheckOut", {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        style: {
+          backgroundColor: '#c7899e', 
+          color: 'white' 
+        }
+      });
     } finally {
       setIsLoading(false);
       setOpenPaymentInfo(false);
     }
   };
   
+  const handleToggleSelect = (itemId) => {
+    setSelectedItems((prevSelectedItems) => {
+      if (prevSelectedItems.includes(itemId)) {
+        return prevSelectedItems.filter((id) => id !== itemId);
+      } else {
+        return [...prevSelectedItems, itemId];
+      }
+    });
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-md p-8 w-full h-[1000px] mx-auto">
@@ -138,10 +151,13 @@ try {
           {cartItems.map((item) => (
             <li key={item._id} className="flex items-center justify-between space-x-4 p-4 bg-gray-50 rounded-lg shadow-sm">
               <div className="flex items-center space-x-4">
-                <img src={item.productId.imageUrl} alt={item.productId.name} className="w-20 h-20 object-cover rounded-lg shadow"/>
+                <img src={item.productId.imageUrl[currentImageIndex]} alt={item.productId.name} className="w-20 h-20 object-cover rounded-lg shadow"/>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-800">{item.productId.name}</h3>
                   <p className="text-sm text-gray-500">{item.quantity} x ${item.productId.price.toFixed(2)}</p>
+                {item.productId.stock < item.quantity ? (
+                  <span className="text-red-500 text-xl font-semibold">Out of Stock</span>
+                ) : null}
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -149,6 +165,11 @@ try {
                 <button onClick={() => handleRemoveItem(item.productId._id)} className="text-red-500 hover:text-red-700 text-sm">
                   Remove
                 </button>
+                <input 
+                  type="checkbox" 
+                  checked={selectedItems.includes(item._id)} 
+                  onChange={() => handleToggleSelect(item._id)} 
+                />
               </div>
             </li>
           ))}
@@ -206,6 +227,7 @@ try {
 
         </div>
       )}
+      <ToastContainer /> 
     </div>
   );
 };

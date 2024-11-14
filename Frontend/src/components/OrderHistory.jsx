@@ -3,7 +3,7 @@ import axios from "axios";
 
 const OrderHistory = () => {
   const [orderItems, setOrderItems] = useState([]);
-  
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); 
   useEffect(() => {
     fetchOrder();
   }, []);
@@ -39,7 +39,7 @@ const OrderHistory = () => {
                   <li key={product.productId._id} className="flex justify-between items-center">
                     <div className="flex items-center space-x-6">
                       <img
-                        src={product.productId.imageUrl}
+                        src={product.productId.imageUrl[currentImageIndex]}
                         alt={product.productId.name}
                         className="w-24 h-24 object-cover rounded-lg shadow-sm"
                       />

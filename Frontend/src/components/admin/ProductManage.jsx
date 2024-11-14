@@ -9,8 +9,8 @@ function ProductManage() {
     const [error, setError] = useState(null);
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
-    const [newProduct, setNewProduct] = useState({ name: "", description: "", price: "", imageUrl: "", category: "" });
-    const [editProduct, setEditProduct] = useState({ _id: "", name: "", description: "", price: "", imageUrl: "", category: "" });
+    const [newProduct, setNewProduct] = useState({ name: "", description: "", price: "", imageUrl: [""], category: "", stock: "" });
+    const [editProduct, setEditProduct] = useState({ _id: "", name: "", description: "", price: "", imageUrl: [""], category: "", stock: "" });
 
     useEffect(() => {
     fetchProducts();
@@ -61,7 +61,7 @@ const handleAddProduct = async () => {
     try {
     await axios.post('http://localhost:8080/api/products/create', newProduct);
     fetchProducts();
-    setNewProduct({ name: "", description: "", price: "", imageUrl: "", category: "" });
+    setNewProduct({ name: "", description: "", price: "", imageUrl: [], category: "", stock: "" });
     handleCloseAdd();
     } catch (err) {
     console.error('Error adding product:', err);
@@ -78,6 +78,26 @@ const handleEditProduct = async () => {
     }
 };
 
+const handleImageUrlChange = (index, value, isEdit = false) => {
+    if (isEdit) {
+      const updatedImages = [...editProduct.imageUrl];
+      updatedImages[index] = value;
+      setEditProduct((prev) => ({ ...prev, imageUrl: updatedImages }));
+    } else {
+      const updatedImages = [...newProduct.imageUrl];
+      updatedImages[index] = value;
+      setNewProduct((prev) => ({ ...prev, imageUrl: updatedImages }));
+    }
+  };
+  
+  const addImageUrlField = (isEdit = false) => {
+    if (isEdit) {
+      setEditProduct((prev) => ({ ...prev, imageUrl: [...prev.imageUrl, ""] }));
+    } else {
+      setNewProduct((prev) => ({ ...prev, imageUrl: [...prev.imageUrl, ""] }));
+    }
+  };
+  
 return (
     <div className="p-4 md:p-8">
     <div className="flex flex-col md:flex-row justify-between">
@@ -92,6 +112,7 @@ return (
             <TableCell>Image</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Price</TableCell>
+            <TableCell>Stock</TableCell>
             <TableCell>Actions</TableCell>
             </TableRow>
         </TableHead>
@@ -104,9 +125,20 @@ return (
             {products.map((product) => (
             <TableRow key={product._id}>
                 <TableCell>{product._id}</TableCell>
-                <TableCell>{product.imageUrl}</TableCell>
+
+                <TableCell>
+        {product.imageUrl.map((idx) => (
+        <ul key={idx}>
+        <li > {`${idx}`}</li>
+        </ul>
+    ))}
+  
+</TableCell>
+
+
                 <TableCell>{product.name}</TableCell>
                 <TableCell>${product.price.toFixed(2)}</TableCell>
+                <TableCell>{product.stock}</TableCell>
                 <TableCell>
                 <button onClick={() => handleOpenEdit(product)} className="mr-2 bg-blue-500 text-white px-2 py-1 rounded">
                     <Edit />
@@ -127,8 +159,13 @@ return (
         <TextField fullWidth name="name" label="Product Name" value={newProduct.name} onChange={(e) => handleInputChange(e)} margin="normal" />
         <TextField fullWidth name="description" label="Product Description" value={newProduct.description} onChange={(e) => handleInputChange(e)} margin="normal" />
         <TextField fullWidth name="price" label="Price" type="number" value={newProduct.price} onChange={(e) => handleInputChange(e)} margin="normal" />
-        <TextField fullWidth name="imageUrl" label="Image URL" value={newProduct.imageUrl} onChange={(e) => handleInputChange(e)} margin="normal" />
+        {newProduct.imageUrl.map((url, index) => (
+        <TextField key={index} fullWidth label={`Image URL ${index + 1}`} value={url} onChange={(e) => handleImageUrlChange(index, e.target.value)} margin="normal"/>
+        ))}<Button onClick={() => addImageUrlField()} variant="contained" color="secondary" fullWidth>
+        Add Another Image URL
+      </Button>
         <TextField fullWidth name="category" label="Product Category" value={newProduct.category} onChange={(e) => handleInputChange(e)} margin="normal" />
+        <TextField fullWidth name="stock" label="Product Stock" value={newProduct.stock} onChange={(e) => handleInputChange(e)} margin="normal" />    
         <Button onClick={handleAddProduct} variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
             Add Product
         </Button>
@@ -142,8 +179,13 @@ return (
         <TextField fullWidth name="name" label="Product Name" value={editProduct.name} onChange={(e) => handleInputChange(e, true)} margin="normal" />
         <TextField fullWidth name="description" label="Product Description" value={editProduct.description} onChange={(e) => handleInputChange(e, true)} margin="normal" />
         <TextField fullWidth name="price" label="Price" type="number" value={editProduct.price} onChange={(e) => handleInputChange(e, true)} margin="normal" />
-        <TextField fullWidth name="imageUrl" label="Image URL" value={editProduct.imageUrl} onChange={(e) => handleInputChange(e, true)} margin="normal" />
+        {editProduct.imageUrl.map((url, index) => (
+        <TextField key={index} fullWidth label={`Image URL ${index + 1}`} value={url} onChange={(e) => handleImageUrlChange(index, e.target.value, true)} margin="normal"/>
+        ))}<Button onClick={() => addImageUrlField(true)} variant="contained" color="secondary" fullWidth>
+        Add Another Image URL
+        </Button>
         <TextField fullWidth name="category" label="Product Category" value={editProduct.category} onChange={(e) => handleInputChange(e, true)} margin="normal" />
+        <TextField fullWidth name="stock" label="Product Stock" value={editProduct.stock} onChange={(e) => handleInputChange(e, true)} margin="normal" />
         <Button onClick={handleEditProduct} variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
             Update Product
         </Button>

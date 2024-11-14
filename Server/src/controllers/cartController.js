@@ -114,13 +114,26 @@ exports.getCart = async (req, res) => {
 
 // Checkout and place order
 
-exports.checkout = async (req,res) => {
+exports.checkout = async (req, res) => {
   try {
-    const { cartItems, totalAmount} = req.body;
+    const { cartItems, totalAmount, selectedItems } = req.body; 
+    
+    const selectedCartItems = cartItems.filter(item => selectedItems.includes(item._id));
+    for (const item of selectedCartItems) {
+      const product = await Product.findById(item.productId);
+
+      if (product.stock < item.quantity) {
+        return res.status(400).json({ success: false, message: `Not enough stock for product: ${product.name}` });
+      }
+
+      await Product.findByIdAndUpdate(item.productId, {
+        $inc: { stock: -item.quantity },
+      });
+    }
 
     const newOrder = new Order({
       userId: req.userId,
-      products: cartItems.map(item => ({
+      products: selectedCartItems.map(item => ({
         productId: item.productId,
         quantity: item.quantity,
         price: item.productId.price
@@ -129,10 +142,11 @@ exports.checkout = async (req,res) => {
     });
 
     await newOrder.save();
+
     const updatedCart = await Cart.findOneAndUpdate(
-      { userId: req.userId },  // Find the cart by userId
-      { $set: { products: [] } },  // Set products array to empty
-      { new: true }  // Return the updated cart
+      { userId: req.userId },
+      { $pull: { products: { _id: { $in: selectedItems } } } }, 
+      { new: true }
     );
 
     if (!updatedCart) {
@@ -144,7 +158,8 @@ exports.checkout = async (req,res) => {
     console.error('Checkout error:', error);
     res.status(500).json({ success: false, message: 'An error occurred during checkout' });
   }
-    }
+};
+
 // exports.checkout = async (req, res) => {
 //   const userId = req.userId;
 //   const { cartItems } = req.body; 

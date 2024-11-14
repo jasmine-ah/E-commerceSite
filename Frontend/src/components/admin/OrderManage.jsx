@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Modal, Box, TextField, Button } from "@mui/material";
-import { Add, Edit, Delete } from "@mui/icons-material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 function OrderManage() {
     const [orders, setOrders] = useState([]);
@@ -10,7 +9,7 @@ function OrderManage() {
     const [openAdd, setOpenAdd] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
     const [newProduct, setNewProduct] = useState({ name: "", description: "", price: "", imageUrl: "", category: "" });
-    const [editProduct, setEditProduct] = useState({ _id: "", name: "", description: "", price: "", imageUrl: "", category: "" });
+    const [editProduct, setEditProduct] = useState({ _id: "", name: "", description: "", price: "", imageUrl: [""], category: "" });
 
     useEffect(() => {
     fetchOrders();

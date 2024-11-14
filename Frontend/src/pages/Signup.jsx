@@ -2,7 +2,8 @@ import React,{useState} from "react";
 import axios from "axios";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Link,useNavigate} from 'react-router-dom';
-
+import { toast, ToastContainer } from "react-toastify"; 
+import "react-toastify/dist/ReactToastify.css";
 function Signup() {
     const Navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -27,7 +28,6 @@ function Signup() {
         setErrors(errors);
         return Object.keys(errors).length === 0;
     };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validateForm();
@@ -36,19 +36,59 @@ function Signup() {
         }
         try {
             const response = await axios.post('http://localhost:8080/api/auth/signup', {
-                name: formData.name, 
+                name: formData.name,
                 email: formData.email,
                 password: formData.password,
             });
-            console.log(response.data);            
-            Navigate('/login'); 
+    
+            // Check if the response status is 201 (Created)
+            if (response.status === 201) {
+                toast.success("Successfully Registered!", {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    style: {
+                        backgroundColor: '#c7899e',
+                        color: 'white',
+                    }
+                });
+                setTimeout(() => {
+                    Navigate('/login');
+                }, 1500);  
+            } else {
+                toast.error("Registration failed. Please try again.", {
+                    position: "bottom-right",
+                    autoClose: 3000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    style: {
+                        backgroundColor: '#c7899e',
+                        color: 'white',
+                    }
+                });
+            }
         } catch (error) {
             console.error('Error signing up:', error);
+            toast.error("Unable to Register", {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                style: {
+                    backgroundColor: '#c7899e',
+                    color: 'white',
+                }
+            });
             if (error.response && error.response.data) {
                 setErrors({ ...errors, api: error.response.data.message });
             }
         }
     };
+    
 
 
     return (
@@ -91,7 +131,9 @@ function Signup() {
                         </button>
                     </form>
                 </div>
+                <ToastContainer/>
             </div>
+            
         </>
     );
 };

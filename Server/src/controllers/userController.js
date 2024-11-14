@@ -24,7 +24,7 @@ exports.signup = async (req, res) => {
     const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).json({ message: 'User created successfully' });
+    res.status(201).json({ success: true, message: 'User created successfully' });
   } catch (error) {
     console.error('Signup error:', error);
     res.status(500).json({ message: 'Internal server error occurred during signup' });

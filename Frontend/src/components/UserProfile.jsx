@@ -71,7 +71,7 @@ const handleInputChange = (e, isEdit = false) => {
       <div className="flex flex-col">
         {/* <h2 className="text-3xl font-semibold text-gray-800">{user.name}</h2> */}
         <h2 className="text-xl font-semibold text-gray-500">{user.email}</h2>
-        <button className="mt-2 text-sm text-gray-500 underline hover:text-gray-700" onClick={() => handleOpenEdit(user)}> Edit profile</button>
+        <button className="mt-2 text-sm text-gray-500 underline hover:text-gray-700" onClick={() => handleOpenEdit(user)}><i className="fas fa-edit"></i> </button>
       </div>
     </div>
 
