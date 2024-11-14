@@ -16,11 +16,13 @@ import Reports from "./components/admin/Reports";
 
 function App(){
   const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith('/admin');;
-
+  const isAdminRoute = location.pathname.startsWith('/admin');
+  const isProfileRoute = location.pathname.startsWith('/profile');
+  const shouldHideNavBar = isAdminRoute || isProfileRoute;
 return(
   <div className='bg-[#fce3eb] bg-cover bg-center'>
-  {!isAdminRoute && <NavBar />}
+  {!shouldHideNavBar  && <NavBar />}
+
     <Routes>
     <Route path="/" element={<MainPage/>}/>
     <Route path="/signup" element={<Signup/>}/>

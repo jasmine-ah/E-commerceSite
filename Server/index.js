@@ -5,6 +5,7 @@ const userRoutes = require('./src/routes/userRoutes');
 const productRoutes = require('./src/routes/productRoutes');
 const cartRoutes = require('./src/routes/cartRoutes'); 
 const reportRoutes = require('./src/routes/reportRoutes');
+const orderRoutes = require('./src/routes/orderRoutes');
 const checkAndCreateAdminUser = require('./src/init')
 require('dotenv').config();
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use('/api/auth', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/order', orderRoutes);
 app.use('/api/report', reportRoutes);
 
 checkAndCreateAdminUser().then(()=>{

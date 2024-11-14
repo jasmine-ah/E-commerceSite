@@ -70,7 +70,7 @@ exports.getAllUser = async (req, res) => {
     res.json(user);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching users' });
-  };
+  }
 };
 
 // Get user by ID
@@ -80,7 +80,7 @@ exports.getUser= async (req, res) => {
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(user);
   } catch (error) {
-    res.status(500).json({ message: 'Error finding user' });
+    res.status(500).json({ message: 'hello' });
   }
 };
 
@@ -126,13 +126,12 @@ exports.activeUsers = async (req, res) => {
 };
 
 
-exports.activeUsers = async (req,res)=>{
+exports.activeUsers = async (req, res) => {
   try {
-    const userId = await User.find(_id); 
-    const users = await User.countDocuments(userId);
-
-    res.json(users);
+    const usersCount = await User.countDocuments(); 
+    res.json({ count: usersCount });
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching uesr' });
+    res.status(500).json({ message: 'Error fetching user count' });
   }
-}
+};
+

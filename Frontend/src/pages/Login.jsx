@@ -41,7 +41,7 @@ function Login() {
             localStorage.setItem("token", token);
             localStorage.setItem("userId", userId);
             // console.log(response.data);            
-            Navigate('/productlist'); 
+            Navigate('/profile'); 
         } catch (error) {
             console.error('Error logging in:', error);
             if (error.response && error.response.data) {
@@ -52,41 +52,40 @@ function Login() {
 
 
     return (
-        <div className="flex flex-col items-center min-h-screen bg-[#f4f7fb]">
-            <div className="bg-white shadow-lg rounded-lg p-10 w-[90%] max-w-md mt-[10%]">
-                <h1 className="text-3xl font-bold text-center text-[#3d1f24] mb-6">Log In</h1>
-                <form onSubmit={handleSubmit} className="flex flex-col">
-                    <div className="relative mb-6">
-                        <i className="fas fa-envelope absolute left-3 top-1/2 transform -translate-y-1/2 text-[#a3a3a3]" />
-                        <input
-                            type="text"
-                            placeholder="Email"
-                            className="w-full pl-10 pr-4 py-3 bg-[#fce4ec] border border-[#e0e0e0] rounded-lg focus:outline-none focus:border-[#f4b400] transition duration-200"
-                            value={formData.email} required onChange={(e) => setFormData({ ...formData, email: e.target.value })}  
-                        />
-                        {errors.email && <p className='text-sm text-red-600'>{errors.email}</p>}
-                    </div>
-                    <div className="relative mb-6">
-                        <i className="fas fa-lock absolute left-3 top-1/2 transform -translate-y-1/2 text-[#a3a3a3]" />
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            className="w-full pl-10 pr-4 py-3 bg-[#fce4ec] border border-[#e0e0e0] rounded-lg focus:outline-none focus:border-[#f4b400] transition duration-200"
-                            value={formData.password} required onChange={(e) => setFormData({ ...formData, password: e.target.value })}  
-                        />
-                        {errors.password && <p className='text-sm text-red-600'>{errors.password}</p>}
-                    </div>
-                    
-                    {errors.api && <p className='text-sm text-red-600'>{errors.api}</p>}
-                    <button type="submit" className="bg-[#c7899e] text-white py-3 rounded-lg hover:bg-[#b6a1a8] transition duration-200">               
-                        Log In
-                    </button>
-                    <p className="mt-4 text-center text-[#666]">
-                        Don't have an account? <Link to="/signup" className="text-[#c7899e] font-semibold">Sign Up</Link>
-                    </p>
-                </form>
-            </div>
-        </div>
+<div className="flex flex-col items-center min-h-screen bg-gradient-to-r from-[#fce3eb] to-[#f4f7fb]">
+<div className="bg-white shadow-xl rounded-3xl p-12 w-[90%] max-w-lg mt-16">
+    <h1 className="text-4xl font-semibold text-center text-[#3d1f24] mb-8">Log In Here</h1>
+    
+    <form onSubmit={handleSubmit} className="flex flex-col">
+    <div className="relative mb-8">
+        <input type="email" placeholder="Email Address" className="w-full pl-10 pr-4 py-4 bg-[#fce4ec] border-2 border-[#e0e0e0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f4b400] transition duration-300 ease-in-out shadow-md" value={formData.email} required onChange={(e) => setFormData({ ...formData, email: e.target.value })}/>
+        <i className="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-[#a3a3a3]" />
+        {errors.email && <p className="text-sm text-red-600 mt-2">{errors.email}</p>}
+    </div>
+    <div className="relative mb-8">
+        <input type="password" placeholder="Password" className="w-full pl-10 pr-4 py-4 bg-[#fce4ec] border-2 border-[#e0e0e0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f4b400] transition duration-300 ease-in-out shadow-md" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} required/>
+        <i className="fas fa-lock absolute left-4 top-1/2 transform -translate-y-1/2 text-[#a3a3a3]" />
+        {errors.password && <p className="text-sm text-red-600 mt-2">{errors.password}</p>}
+    </div>
+    {errors.api && <p className="text-sm text-red-600 text-center mt-4">{errors.api}</p>}
+
+    <button
+        type="submit"
+        className="bg-[#c7899e] text-white py-4 rounded-lg shadow-md hover:bg-[#b6a1a8] transition duration-300 transform hover:scale-105"
+    >
+        Log In
+    </button>
+
+    <p className="mt-6 text-center text-[#666] text-sm">
+        Don't have an account?{" "}
+        <Link to="/signup" className="text-[#c7899e] font-semibold hover:text-[#f4b400] transition duration-300">
+        Sign Up
+        </Link>
+    </p>
+    </form>
+</div>
+</div>
+
     );
 }
 

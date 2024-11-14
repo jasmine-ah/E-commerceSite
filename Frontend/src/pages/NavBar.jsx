@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 function NavBar() {
   const [nav, setNav] = useState(false);
   const location = useLocation();
-
+  const isLoggedIn = Boolean(localStorage.getItem("token"));
   const handleNav = () => {
     setNav(!nav);
   };
@@ -35,6 +35,14 @@ function NavBar() {
     <li className='group relative'>
         <HashLink to="/#footer" className='transition duration-300 ease-in-out hover:text-[#c7899e]'>Contact<span className='absolute bottom-0 left-0 w-full h-1 bg-[#c7899e] scale-x-0 transition-transform duration-300 group-hover:scale-x-100'></span></HashLink>
     </li>
+    {isLoggedIn && (
+            <li className='group relative'>
+              <Link to="/profile" className='transition duration-300 ease-in-out hover:text-[#c7899e]'>
+              <i className="fas fa-user-circle mr-2"></i>
+                <span className='absolute bottom-0 left-0 w-full h-1 bg-[#c7899e] scale-x-0 transition-transform duration-300 group-hover:scale-x-100'></span>
+              </Link>
+            </li>
+          )}
     <li className='flex items-center space-x-4'>
         <Link to="/admin" className='flex items-center transition duration-300 ease-in-out hover:text-[#c7899e]'><i className='fas fa-cart-arrow-down text-xl'></i></Link>
         <span>|</span>
@@ -64,6 +72,11 @@ function NavBar() {
           <li className='hover:text-[#c7899e]'>
             <HashLink to="/#footer" onClick={handleNav}>Contact</HashLink>
           </li>
+          {isLoggedIn && (
+            <li className='hover:text-[#c7899e]'>
+              <Link to="/profile" onClick={handleNav}>Show Profile</Link>
+            </li>
+          )}
           <li className='hover:text-[#c7899e]'>
             <Link to="/signup" onClick={handleNav}>
               <i className='fas fa-user-plus'></i> Signup
