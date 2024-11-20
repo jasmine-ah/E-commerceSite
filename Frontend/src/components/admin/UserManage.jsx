@@ -35,14 +35,14 @@ function UserManage() {
 
   return (
     <div className="p-8">
-      <h2 className="text-2xl font-bold mb-4">User Management</h2>
-      <TableContainer component={Paper}>
+      <h2 className="text-2xl font-bold mb-4 text-[#6366f1]">User Management</h2>
+      <TableContainer component={Paper} style={{ backgroundColor: '#030712'}}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Email</TableCell>
+              <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }}>ID</TableCell>
+              <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }}>Name</TableCell>
+              <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }}>Email</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -52,10 +52,10 @@ function UserManage() {
               </TableRow>
             ) : null}
             {users.map((user) => (
-              <TableRow key={user._id}>
-                <TableCell>{user._id}</TableCell>
-                <TableCell>{user.name}</TableCell>
-                <TableCell>{user.email}</TableCell>
+              <TableRow key={user._id} style={{transition: 'background-color 0.3s ease',}} className="hover:bg-[#31415c] hover:text-[#e5e7eb]">
+                <TableCell style={{color: '#9ca3af' , borderBottomColor:'#9ca3af' }}>{user._id}</TableCell>
+                <TableCell style={{color: '#9ca3af' , borderBottomColor:'#9ca3af' }}>{user.name}</TableCell>
+                <TableCell style={{color: '#9ca3af' , borderBottomColor:'#9ca3af' }}>{user.email}</TableCell>
               </TableRow>
             ))}
           </TableBody>

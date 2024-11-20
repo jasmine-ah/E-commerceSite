@@ -34,14 +34,35 @@ exports.getAllOrder= async (req, res) => {
     }
   };
 
-
-
 exports.orderReport = async (req, res) => {
   try {
-
     const ordersCount = await Order.countDocuments(); 
     res.json({ count: ordersCount });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching order count' });
+  }
+};
+
+exports.productsSold = async (req, res) => {
+  try {
+    const productsSoldPerDay = await Order.aggregate([
+      {
+        $unwind: "$products", 
+      },
+      {
+        $group: {
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } }, 
+          totalProductsSold: { $sum: "$products.quantity" }, 
+        },
+      },
+      {
+        $sort: { _id: 1 }, 
+      },
+    ]);
+
+    res.json(productsSoldPerDay);
+  } catch (error) {
+    console.error("Error fetching products sold per day:", error);
+    res.status(500).json({ message: "Error fetching sold products." });
   }
 };

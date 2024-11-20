@@ -19,46 +19,21 @@ function MainPage(){
         className="flex flex-col md:flex-row h-auto md:h-[780px] bg-gradient-to-r from-[#fce4ec] to-[#fad3d3] relative"
       >
         <div className="flex flex-col md:w-1/2 justify-center items-center px-10 z-10">
-          <motion.h1
-            className="text-[#3d1f24] text-5xl sm:mt-5 md:text-7xl font-extrabold"
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.h1 className="text-[#3d1f24] text-5xl sm:mt-5 md:text-7xl font-extrabold" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             Sparkle Your Day
           </motion.h1>
-          <motion.p
-            className="text-lg md:text-2xl mt-5 text-[#9d5361] tracking-wide"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
+          <motion.p className="text-lg md:text-2xl mt-5 text-[#9d5361] tracking-wide" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}>
             Shop the newest arrivals at unbeatable prices.
           </motion.p>
           <Link to="/product">
-            <motion.button
-              className="hidden md:block mt-8 px-8 py-4 bg-[#c7899e] text-white font-semibold text-lg rounded-full shadow-lg hover:bg-[#b37487] transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Shop Now
-            </motion.button>
+            <motion.button className="hidden md:block mt-8 px-8 py-4 bg-[#c7899e] text-white font-semibold text-lg rounded-full shadow-lg hover:bg-[#b37487] transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}> Shop Now</motion.button>
           </Link>
           {/* <div className="mt-12 w-full border-t-[1px] border-t-[#4a292e] opacity-50"></div> */}
         </div>
 
         <div className="flex md:w-1/2 items-center justify-center relative">
-          <motion.img
-            src="p.png"
-            alt="/"
-            className="w-full h-[90%] object-cover shadow-lg transform hover:scale-105 transition duration-300"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-          />
+          <motion.img src="p.png" alt="/" className="w-full h-[90%] object-cover shadow-lg transform hover:scale-105 transition duration-300" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}/>
         </div>
-
-  
         <div className="absolute top-10 right-10 w-[200px] h-[200px] bg-gradient-to-br from-[white] to-[white] rounded-full opacity-50 blur-2xl"></div>
         <div className="absolute bottom-10 left-10 w-[150px] h-[150px] bg-gradient-to-br from-[white] to-[white] rounded-full opacity-50 blur-2xl"></div>
       </section>
@@ -139,19 +114,10 @@ function MainPage(){
     <div className="overflow-x-auto scroll-smooth scrollbar-hide">
       <div className="flex space-x-8 snap-x snap-mandatory">
         {products.map((product) => (
-          <div
-            key={product.id}
-            className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 w-72 shrink-0 snap-center"
-          >
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-48 object-cover rounded-t-lg"
-            />
+          <div key={product.id} className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 w-72 shrink-0 snap-center">
+            <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-t-lg"/>
             <div className="p-4">
-              <h3 className="text-xl font-semibold mb-2 text-[#6b7b8c]">
-                {product.name}
-              </h3>
+              <h3 className="text-xl font-semibold mb-2 text-[#6b7b8c]">{product.name}</h3>
               <p className="text-lg font-bold text-[#c7899e]">{product.price}</p>
             </div>
           </div>

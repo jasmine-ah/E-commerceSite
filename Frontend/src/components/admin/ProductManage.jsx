@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Modal, Box, TextField, Button } from "@mui/material";
 import { Add, Edit, Delete } from "@mui/icons-material";
-
+import {IconButton} from "@mui/material";
 function ProductManage() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -80,74 +80,71 @@ const handleEditProduct = async () => {
 
 const handleImageUrlChange = (index, value, isEdit = false) => {
     if (isEdit) {
-      const updatedImages = [...editProduct.imageUrl];
-      updatedImages[index] = value;
-      setEditProduct((prev) => ({ ...prev, imageUrl: updatedImages }));
+    const updatedImages = [...editProduct.imageUrl];
+    updatedImages[index] = value;
+    setEditProduct((prev) => ({ ...prev, imageUrl: updatedImages }));
     } else {
-      const updatedImages = [...newProduct.imageUrl];
-      updatedImages[index] = value;
-      setNewProduct((prev) => ({ ...prev, imageUrl: updatedImages }));
+    const updatedImages = [...newProduct.imageUrl];
+    updatedImages[index] = value;
+    setNewProduct((prev) => ({ ...prev, imageUrl: updatedImages }));
     }
-  };
-  
-  const addImageUrlField = (isEdit = false) => {
+};
+
+const addImageUrlField = (isEdit = false) => {
     if (isEdit) {
-      setEditProduct((prev) => ({ ...prev, imageUrl: [...prev.imageUrl, ""] }));
+    setEditProduct((prev) => ({ ...prev, imageUrl: [...prev.imageUrl, ""] }));
     } else {
-      setNewProduct((prev) => ({ ...prev, imageUrl: [...prev.imageUrl, ""] }));
+    setNewProduct((prev) => ({ ...prev, imageUrl: [...prev.imageUrl, ""] }));
     }
-  };
-  
+};
+
 return (
     <div className="p-4 md:p-8">
-    <div className="flex flex-col md:flex-row justify-between">
-        <h2 className="text-2xl font-bold mb-4">Product Management</h2>
-        <button onClick={handleOpenAdd} className='bg-[#3b82f6] rounded text-white hover:bg-slate-600 flex items-center space-x-2 py-2 px-4 mt-4 md:mt-0'><Add/> Add New Product</button>
+    <div className="flex flex-col md:flex-row justify-between ">
+        <h2 className="text-2xl font-bold mb-4 text-[#db8f10]">Product Management</h2>
+        <button onClick={handleOpenAdd} className='rounded text-white font-thin hover:bg-slate-600 flex items-center mt-4 md:mt-0'><Add/> Add New Product</button>
     </div>
-    <TableContainer component={Paper}  className="overflow-x-auto">
+    
+    <TableContainer component={Paper} style={{ backgroundColor: '#030712'}} className="overflow-x-auto">
         <Table aria-label="simple table">
         <TableHead>
             <TableRow>
-            <TableCell>ID</TableCell>
-            <TableCell>Image</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Stock</TableCell>
-            <TableCell>Actions</TableCell>
+            {/* <TableCell style={{color: '#fff' }}>ID</TableCell> */}
+            <TableCell style={{color: '#fff', borderBottomColor:'#9ca3af' }} >Name</TableCell>
+            <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }}>Image</TableCell>            
+            <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }} >Price</TableCell>
+            <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }} >Stock</TableCell>
+            <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }} >Actions</TableCell>
             </TableRow>
         </TableHead>
         <TableBody>
             {!loading && products.length === 0 ? (
             <TableRow>
-                <TableCell colSpan={5} align="center">No products found.</TableCell>
+                <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }} colSpan={5} align="center">No products found.</TableCell>
             </TableRow>
             ) : null}
             {products.map((product) => (
-            <TableRow key={product._id}>
-                <TableCell>{product._id}</TableCell>
-
-                <TableCell>
-        {product.imageUrl.map((idx) => (
-        <ul key={idx}>
-        <li > {`${idx}`}</li>
-        </ul>
-    ))}
-  
-</TableCell>
-
-
-                <TableCell>{product.name}</TableCell>
-                <TableCell>${product.price.toFixed(2)}</TableCell>
-                <TableCell>{product.stock}</TableCell>
-                <TableCell>
-                <button onClick={() => handleOpenEdit(product)} className="mr-2 bg-blue-500 text-white px-2 py-1 rounded">
-                    <Edit />
-                </button>
-                <button onClick={() => handleDelete(product._id)} className="bg-red-500 text-white px-2 py-1 rounded">
-                    <Delete />
-                </button>
-                </TableCell>
-            </TableRow>
+            <TableRow key={product._id} style={{transition: 'background-color 0.3s ease',}} className="hover:bg-[#31415c] hover:text-[#e5e7eb]">
+            {/* <TableCell style={{color: '#fff' }} >{product._id}</TableCell> */}
+            <TableCell style={{color: '#9ca3af' , borderBottomColor:'#9ca3af' }} >{product.name}</TableCell>
+            <TableCell style={{color: '#9ca3af' , borderBottomColor:'#9ca3af' }}>{product.imageUrl.map((idx) => (
+                <ul key={idx}>
+                <li > {`${idx}`}</li>
+                </ul>
+                ))}
+            </TableCell>
+            
+            <TableCell style={{color: '#2cb384' , borderBottomColor:'#9ca3af' }} >${product.price.toFixed(2)}</TableCell>
+            <TableCell style={{color: '#9ca3af' , borderBottomColor:'#9ca3af' }} >{product.stock}</TableCell>
+            <TableCell style={{color: '#fff' , borderBottomColor:'#9ca3af' }} >
+            <IconButton color="primary" onClick={() => handleOpenEdit(product)} title="Edit Product">
+                <Edit />
+            </IconButton>
+            <IconButton color="error" onClick={() => handleDelete(product._id)} title="Delete Product">
+                <Delete />
+            </IconButton>
+            </TableCell>
+        </TableRow>
             ))}
         </TableBody>
         </Table>

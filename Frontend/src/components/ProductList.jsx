@@ -37,10 +37,10 @@ const ProductList = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="flex flex-row justify-between mb-12">
-        <h1 className="text-4xl font-bold text-center text-gray-800">
+        <h1 className="text-3xl font-semibold ml-[8rem] text-gray-800">
           Our Products
         </h1>
-        <select onChange={(e) => handleSearch(e.target.value)} className="w-[20%] border-black">
+        <select onChange={(e) => handleSearch(e.target.value)} className="w-[20%] border-black mr-[6rem]">
           <option value="">All Categories</option>
           {categoryOptions.map((category, index) => (
             <option key={index} value={category}>

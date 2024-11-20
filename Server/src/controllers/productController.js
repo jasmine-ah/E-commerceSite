@@ -61,4 +61,14 @@ exports.deleteProduct = async (req, res) => {
   }
 };
 
+//product report
 
+exports.productReport = async (req, res) => {
+  try {
+
+    const productsCount = await Product.countDocuments(); 
+    res.json({ count: productsCount });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching product count' });
+  }
+};

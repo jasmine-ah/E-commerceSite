@@ -27,15 +27,12 @@ const FAQ = () => {
     };
 
     return (
-        <section id="faq" className="bg-[#fce4ec] p-8 border border-b-[60px] border-[#f4f7fb]">
+        <section id="faq" className="bg-[#fce4ec] p-8 border-[#f4f7fb]">
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">Frequently Asked Questions</h2>
             <div className="max-w-2xl mx-auto">
                 {faqs.map((faq, index) => (
                     <div key={index} className="border-b border-gray-300 mb-4">
-                        <button
-                            onClick={() => toggleFAQ(index)}
-                            className="flex justify-between items-center w-full py-4 text-left focus:outline-none"
-                        >
+                        <button onClick={() => toggleFAQ(index)} className="flex justify-between items-center w-full py-4 text-left focus:outline-none">
                             <span className="text-lg font-semibold text-gray-700">{faq.question}</span>
                             <span className="text-gray-600">{activeIndex === index ? '-' : '+'}</span>
                         </button>

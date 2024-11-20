@@ -14,12 +14,12 @@ function NavBar() {
 
   return (
     <header className='sticky top-0 z-50'>
-      <div className='flex bg-white items-center justify-between h-16 max-w-[1200px] mx-auto px-4 md:px-8 rounded-full shadow-md'>
+      <div className='flex bg-[#f4f7fb] items-center justify-between h-16 w-full mx-auto px-4 md:px-8 shadow-md'>
       
         <h1 className='text-2xl font-semibold text-[#c7899e]'>E-Commerce</h1>
 
         {/* Desktop Menu */}
-        <ul className='hidden md:flex space-x-8 items-center text-[#3d1f24] bg-white p-2'>
+        <ul className='hidden md:flex space-x-8 items-center text-[#3d1f24] bg-[#f4f7fb] p-2'>
     <li className='group relative'>
         <Link to="/" className='transition duration-300 ease-in-out hover:text-[#c7899e]'>Home<span className='absolute bottom-0 left-0 w-full h-1 bg-[#c7899e] scale-x-0 transition-transform duration-300 group-hover:scale-x-100'></span></Link>
     </li>
