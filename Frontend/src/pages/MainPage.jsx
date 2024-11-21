@@ -2,7 +2,7 @@ import React ,{useState} from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { motion } from 'framer-motion';
 import {Link} from 'react-router-dom';
-import FAQ from "../components/Faq";
+import FAQ from "../components/FAQ";
 import Terms from "./Terms";
 import product from "../assets/products.json";
 function MainPage(){
