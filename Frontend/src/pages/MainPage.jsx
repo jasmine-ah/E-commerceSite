@@ -14,10 +14,7 @@ function MainPage(){
     return(
 <>
     {/************************************  hero section ********************************************/}
-    <section
-        id="hero"
-        className="flex flex-col md:flex-row h-auto md:h-[780px] bg-gradient-to-r from-[#fce4ec] to-[#fad3d3] relative"
-      >
+    <section id="hero" className="flex flex-col md:flex-row h-auto md:h-[780px] bg-gradient-to-r from-[#fce4ec] to-[#fad3d3] relative">
         <div className="flex flex-col md:w-1/2 justify-center items-center px-10 z-10">
           <motion.h1 className="text-[#3d1f24] text-5xl sm:mt-5 md:text-7xl font-extrabold" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             Sparkle Your Day
@@ -25,7 +22,7 @@ function MainPage(){
           <motion.p className="text-lg md:text-2xl mt-5 text-[#9d5361] tracking-wide" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}>
             Shop the newest arrivals at unbeatable prices.
           </motion.p>
-          <Link to="/product">
+          <Link to="/productlist">
             <motion.button className="hidden md:block mt-8 px-8 py-4 bg-[#c7899e] text-white font-semibold text-lg rounded-full shadow-lg hover:bg-[#b37487] transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}> Shop Now</motion.button>
           </Link>
           {/* <div className="mt-12 w-full border-t-[1px] border-t-[#4a292e] opacity-50"></div> */}
@@ -154,7 +151,7 @@ function MainPage(){
 </section>
  {/************************************  Footer section ********************************************/}
 
- <footer id="footer" className="bg-[#3d1f24] text-white pt-10">
+ <footer id="footer" className="bg-[#1f2937] text-white pt-10">
   <div className="container mx-auto px-4">
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
       <div className="col-span-1">
@@ -207,7 +204,7 @@ function MainPage(){
         </ul>
       </div>
     </div>
-    <div className="py-4 mt-auto">
+    <div className="py-2 mt-auto">
       <p className="text-center text-sm">&copy; 2024 E-commerce Site. All rights reserved.</p>
     </div>
   </div>
