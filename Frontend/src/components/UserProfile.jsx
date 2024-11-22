@@ -55,8 +55,8 @@ const handleInputChange = (e, isEdit = false) => {
   }
 
   return (
-    <div className="flex justify-center items-center ">
-      <div className="bg-white shadow-2xl w-[800px] h-[600px] p-8 rounded-xl border border-gray-300 transform hover:scale-105 transition-all duration-300 ease-in-out">
+    <div className="flex justify-center mt-10 min-h-screen px-4 sm:px-4 lg:px-8">
+      <div className="bg-white shadow-2xl w-full max-w-[800px] h-auto sm:h-[600px] p-6 sm:p-8 rounded-xl border border-gray-300 transform hover:scale-105 transition-all duration-300 ease-in-out">
         {/* Profile Header */}
         <div className="flex items-center space-x-4 pb-6 border-b border-gray-300 mb-6">
           <img className="w-24 h-24 rounded-full shadow-lg border-4 border-[#c7899e] object-cover" src="/avatar.jpg" alt={user.name}/>

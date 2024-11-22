@@ -70,6 +70,9 @@ function NavBar() {
             <HashLink to="/#services" onClick={handleNav}>Services</HashLink>
           </li>
           <li className='hover:text-[#c7899e]'>
+            <HashLink to="/about" onClick={handleNav}>About</HashLink>
+          </li>
+          <li className='hover:text-[#c7899e]'>
             <HashLink to="/#footer" onClick={handleNav}>Contact</HashLink>
           </li>
           {isLoggedIn && (

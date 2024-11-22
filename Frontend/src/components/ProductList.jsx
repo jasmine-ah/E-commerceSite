@@ -36,11 +36,11 @@ const ProductList = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="flex flex-row justify-between mb-12">
-        <h1 className="text-3xl font-semibold ml-[8rem] text-gray-800">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-12 px-4 md:px-12">
+        <h1 className="text-2xl md:text-3xl font-semibold md:ml-[4rem] text-gray-800 mb-4 md:mb-0">
           Our Products
         </h1>
-        <select onChange={(e) => handleSearch(e.target.value)} className="w-[20%] border-black mr-[6rem]">
+        <select onChange={(e) => handleSearch(e.target.value)} className="w-full md:w-1/4 border-black px-3 py-2 rounded-md md:mr-[4rem]">
           <option value="">All Categories</option>
           {categoryOptions.map((category, index) => (
             <option key={index} value={category}>

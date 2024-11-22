@@ -15,7 +15,7 @@ const AdminDashboard = () => {
       {/* <AppBar position="fixed" className="bg-[#030712] text-white w-full top-0 ">
         <Toolbar style={{ backgroundColor: '#030712', color: '#fff' }}> */}
          
-          <button className="md:hidden text-white ml-auto" onClick={() => setSidebarOpen(!isSidebarOpen)}> &#9776;</button>
+          <button className="fixed top-4 right-4 z-50 text-white p-2 rounded-md shadow-md transition duration-300 md:hidden" onClick={() => setSidebarOpen(!isSidebarOpen)}> &#9776;</button>
         {/* </Toolbar> */}
       {/* </AppBar> */}
       

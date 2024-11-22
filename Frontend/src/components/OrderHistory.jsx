@@ -26,7 +26,7 @@ const OrderHistory = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-8 mt-6 w-full max-w-4xl mx-auto">
+    <div className="bg-white rounded-lg shadow-lg p-8 mt-10 sm:mt-6 w-full max-w-4xl mx-auto">
       <h3 className="text-3xl font-semibold text-gray-800 text-center mb-6">Order History</h3>
       {orderItems.length > 0 ? (
         <ul className="space-y-6">
@@ -41,22 +41,22 @@ const OrderHistory = () => {
                       <img
                         src={product.productId.imageUrl[currentImageIndex]}
                         alt={product.productId.name}
-                        className="w-24 h-24 object-cover rounded-lg shadow-sm"
+                        className="w-16 h-16 object-cover rounded-lg shadow-sm"
                       />
                       <div>
-                        <h3 className="text-lg font-semibold text-gray-800">{product.productId.name}</h3>
-                        <p className="text-sm text-gray-500">
+                        <h3 className="text-sm sm:text-lg font-semibold text-gray-800">{product.productId.name}</h3>
+                        <p className="text-xs sm:text-sm text-gray-500">
                           {product.quantity} x ${product.productId.price.toFixed(2)}
                         </p>
                       </div>
                     </div>
-                    <p className="text-lg font-semibold text-gray-800">
+                    <p className="text-sm sm:text-lg font-semibold text-gray-800">
                       ${(product.quantity * product.productId.price).toFixed(2)}
                     </p>
                   </li>
                 ))}
               </ul>
-              <p className="text-right text-lg font-semibold mt-4">Total: ${order.totalAmount.toFixed(2)}</p>
+              <p className="text-right text:sm sm:text-lg font-semibold mt-4">Total: ${order.totalAmount.toFixed(2)}</p>
             </li>
           ))}
         </ul>

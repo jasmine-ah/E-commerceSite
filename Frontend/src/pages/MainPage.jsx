@@ -14,22 +14,22 @@ function MainPage(){
     return(
 <>
     {/************************************  hero section ********************************************/}
-    <section id="hero" className="flex flex-col md:flex-row h-screen md:h-[780px] bg-gradient-to-r from-[#fce4ec] to-[#fad3d3] relative">
-        <div className="flex flex-col md:w-1/2 justify-center items-center px-10 z-10">
-          <motion.h1 className="text-[#3d1f24] text-5xl sm:mt-5 md:text-7xl font-extrabold" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+    <section id="hero" className="flex flex-col md:flex-row h-screen md:h-screen bg-gradient-to-r from-[#fce4ec] to-[#fad3d3] relative">
+        <div className="flex flex-col w-full md:w-1/2 justify-center items-center px-5 md:px-10 z-10">
+          <motion.h1 className="text-[#3d1f24] mt-[65px] text-4xl sm:text-5xl sm:mt-10 md:text-7xl font-extrabold" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             Sparkle Your Day
           </motion.h1>
-          <motion.p className="text-lg md:text-2xl mt-5 text-[#9d5361] tracking-wide" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}>
+          <motion.p className="text-[20px] sm:text-lg md:text-2xl mt-6 md:mt-5 text-[#9d5361] tracking-wide text-center md:text-left" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}>
             Shop the newest arrivals at unbeatable prices.
           </motion.p>
           <Link to="/productlist">
-            <motion.button className="hidden md:block mt-8 px-8 py-4 bg-[#c7899e] text-white font-semibold text-lg rounded-full shadow-lg hover:bg-[#b37487] transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}> Shop Now</motion.button>
+            <motion.button className="mt-6 md:mt-8 px:10 sm:px-8 py-3 sm:py-4 bg-[#c7899e] text-white font-semibold text-base sm:text-lg rounded-full shadow-lg hover:bg-[#b37487] transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-2xl" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}> Shop Now</motion.button>
           </Link>
           {/* <div className="mt-12 w-full border-t-[1px] border-t-[#4a292e] opacity-50"></div> */}
         </div>
 
-        <div className="flex md:w-1/2 items-center justify-center relative">
-          <motion.img src="p.png" alt="/" className="w-full h-[90%] object-cover shadow-lg transform hover:scale-105 transition duration-300" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}/>
+        <div className="flex w-full md:w-1/2 items-center justify-center relative">
+          <motion.img src="p.png" alt="/" className="w-full h-auto md:h-[90%] object-cover shadow-lg transform hover:scale-105 transition duration-300" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}/>
         </div>
         <div className="absolute top-10 right-10 w-[200px] h-[200px] bg-gradient-to-br from-[white] to-[white] rounded-full opacity-50 blur-2xl"></div>
         <div className="absolute bottom-10 left-10 w-[150px] h-[150px] bg-gradient-to-br from-[white] to-[white] rounded-full opacity-50 blur-2xl"></div>
@@ -91,21 +91,21 @@ function MainPage(){
 
   {/************************************  Services section ********************************************/}
 
-    <section id="services" className=" flex items-center bg-slate-50 justify-center h-[150px] ">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 px-12">
-    <i className="fas fa-award text-xl text-[#c7899e] text-center"><h2>High Quality</h2></i>
-    <i className="fas fa-shipping-fast text-xl text-[#c7899e] text-center"><h2>Delivery</h2></i>
-    <i className="fas fa-smile text-xl text-[#c7899e] text-center"><h2>Easy For Shopping</h2></i>
-    <i className="fas fa-clock text-xl text-[#c7899e] text-center"><h2>24/7 Support</h2></i>
+    <section id="services" className=" flex items-center bg-slate-50 justify-center py-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 px-4 sm:px-12">
+    <i className="fas fa-award text-sm md:text-xl text-[#c7899e] text-center"><h2 className="text-center mt-2 text-[#3d1f24] font-extralight">High Quality</h2></i>
+    <i className="fas fa-shipping-fast text-sm md:text-xl text-[#c7899e] text-center"><h2 className="text-center mt-2 text-[#3d1f24] font-extralight">Delivery</h2></i>
+    <i className="fas fa-smile text-sm md:text-xl text-[#c7899e] text-center"><h2 className="text-center mt-2 text-[#3d1f24] font-extralight">Easy For Shopping</h2></i>
+    <i className="fas fa-clock text-sm md:text-xl text-[#c7899e] text-center"><h2 className="text-center mt-2 text-[#3d1f24] font-extralight">24/7 Support</h2></i>
         </div>
     </section>
 
   {/************************************  Our Featured section ********************************************/}
     
    
-   <section id="featured" className="py-20 bg-white">
+   <section id="featured" className="py-12 bg-white">
   <div className="container mx-auto px-4">
-    <h2 className="text-4xl font-bold text-center mb-12 text-[#c7899e]">
+    <h2 className="text-2xl sm:text-4xl font-bold text-center mb-6 sm:mb-12 text-[#c7899e]">
       Featured Products
     </h2>
     <div className="overflow-x-auto scroll-smooth scrollbar-hide">
@@ -125,23 +125,23 @@ function MainPage(){
 </section>
     
 {/************************************  feedback section ********************************************/}
-<section id='feedback' className='h-[80vh] bg-gradient-to-br from-white to-gray-100 flex flex-col items-center justify-center px-8 py-10'>
-  <div className='absolute max-w-5xl w-full text-center'>
-    <h2 className='text-4xl font-extrabold mb-8 text-[#3d1f24]'>Get in Touch</h2>
-    <p className='text-muted max-w-3xl mx-auto mb-10 text-[#c7899e]'>
+<section id='feedback' className='h-auto bg-gradient-to-br from-white to-gray-100 flex flex-col items-center justify-center px-4 sm:px-8 py-8 sm:py-10'>
+  {/* <div className='absolute max-w-5xl w-full text-center'> */}
+    <h2 className='text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-[#3d1f24] text-center'>Get in Touch</h2>
+    <p className='text-sm sm:text-base max-w-2xl mx-auto mb-6 sm:mb-10 text-[#c7899e] text-center'>
       Whether you want to share feedback, or just want to say hello, we're here to listen.
     </p>
-    <form className='space-y-8'>
-      <div className='flex flex-col md:flex-row gap-8 mb-12'>
-        <input type='text' placeholder='Your Name' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#c7899e]' />
-        <input type='email' placeholder='Your Email' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#c7899e]' />
+    <form className=' space-y-4 sm:space-y-8 w-full max-w-3xl'>
+      <div className='flex flex-col sm:flex-row gap-4 sm:gap-8'>
+        <input type='text' placeholder='Your Name' className='w-full px-4 py-2 sm:py-3 border rounded-lg focus:outline-none focus:border-[#c7899e]' />
+        <input type='email' placeholder='Your Email' className='w-full px-4 py-2 sm:py-3 border rounded-lg focus:outline-none focus:border-[#c7899e]' />
       </div>
-      <textarea placeholder='Your Message' rows='6' className='w-full px-4 py-3 text-muted border border-muted rounded-lg focus:outline-none focus:border-[#c7899e]'></textarea>
-      <button type='submit' className='px-8 py-3 bg-[#c7899e] text-black font-semibold rounded-full hover:bg-[#fbdee3] transition duration-300'>
+      <textarea placeholder='Your Message' rows='4' className='w-full px-4 py-2 sm:py-3 border rounded-lg focus:outline-none focus:border-[#c7899e]'></textarea>
+      <button type='submit' className='px-6 py-2 sm:py-3 bg-[#c7899e] text-white rounded-full hover:bg-[#fbdee3] transition duration-300'>
         Send Message
       </button>
     </form>
-  </div>
+  {/* </div> */}
 </section>
 
 {/************************************  FAQ section ********************************************/}
@@ -151,9 +151,9 @@ function MainPage(){
 </section>
  {/************************************  Footer section ********************************************/}
 
- <footer id="footer" className="bg-[#1f2937] text-white pt-10">
+ <footer id="footer" className="bg-[#1f2937] text-white py-8">
   <div className="container mx-auto px-4">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <div className="col-span-1">
         <h3 className="text-xl font-semibold text-[#c7899e] mb-4">E-commerce Site</h3>
         <p className="text-sm mb-4">
@@ -204,9 +204,9 @@ function MainPage(){
         </ul>
       </div>
     </div>
-    <div className="py-2 mt-auto">
-      <p className="text-center text-sm">&copy; 2024 E-commerce Site. All rights reserved.</p>
-    </div>
+    
+      <p className="text-center text-sm mt-8">&copy; 2024 E-commerce Site. All rights reserved.</p>
+   
   </div>
 </footer>
 
