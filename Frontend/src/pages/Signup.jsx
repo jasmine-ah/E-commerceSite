@@ -41,7 +41,6 @@ function Signup() {
                 password: formData.password,
             });
     
-            // Check if the response status is 201 (Created)
             if (response.status === 201) {
                 toast.success("Successfully Registered!", {
                     position: "bottom-right",
@@ -93,9 +92,9 @@ function Signup() {
 
     return (
         <>
-            <div className="wrapper flex flex-col sm:flex-row h-auto sm:h-[760px] bg-[#f4f7fb]">
+            <div className="wrapper flex flex-col sm:flex-row h-screen sm:h-[760px] bg-[#f4f7fb]">
 
-                <div className="flex flex-col text-[#3d1f24] w-full sm:w-[45%] h-full p-6 bg-[#fce4ec] justify-center items-center text-center sm:text-left">
+                <div className="flex flex-col text-[#3d1f24] w-full sm:w-[45%] h-screen p-6 bg-[#fce4ec] justify-center items-center text-center sm:text-left">
                     <h1 className="text-3xl sm:text-5xl font-bold">Welcome Friend</h1>
                     <p className="mt-4">To keep connected with us please login with your personal info.</p>
                     <button className="mt-6 px-8 sm:px-12 py-3 border-2 border-white bg-[#3d1f24] text-white font-semibold rounded-full hover:bg-[#c7899e] transition duration-300">
@@ -103,7 +102,7 @@ function Signup() {
                     </button>
                 </div>
 
-                <div className="flex flex-col w-full sm:w-[55%] px-6 py-12 sm:py-0 sm:px-0">
+                <div className="flex flex-col w-full h-screen sm:w-[55%] px-6 sm:py-0 sm:px-0">
                     <h1 className="mt-8 sm:mt-[180px] text-center font-bold text-3xl sm:text-4xl text-[#c7899e]">Create Account</h1>
                     
                     <form onSubmit={handleSubmit} className="flex flex-col items-center sm:items-start mt-8 sm:ml-[180px]">

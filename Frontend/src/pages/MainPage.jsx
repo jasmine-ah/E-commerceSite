@@ -14,7 +14,7 @@ function MainPage(){
     return(
 <>
     {/************************************  hero section ********************************************/}
-    <section id="hero" className="flex flex-col md:flex-row h-auto md:h-[780px] bg-gradient-to-r from-[#fce4ec] to-[#fad3d3] relative">
+    <section id="hero" className="flex flex-col md:flex-row h-screen md:h-[780px] bg-gradient-to-r from-[#fce4ec] to-[#fad3d3] relative">
         <div className="flex flex-col md:w-1/2 justify-center items-center px-10 z-10">
           <motion.h1 className="text-[#3d1f24] text-5xl sm:mt-5 md:text-7xl font-extrabold" initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             Sparkle Your Day
