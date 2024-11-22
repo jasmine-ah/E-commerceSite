@@ -1,10 +1,10 @@
 [
     {
       "id": 1,
-      "name": "Lacoste..",
+      "name": "Chanel",
       "price": "$100.99",
       "category": "Lacoste",
-      "image": "lacoste.png"
+      "image": "coco.jpg"
     },
     {
         "id": 2,
@@ -22,30 +22,30 @@
       },
       {
         "id": 4,
-        "name": "Red Temptation",
+        "name": "Chanel",
         "price": "$100.99",
-        "category": "Zara",
-        "image": "tempt.jpg"
+        "category": "Chanel",
+        "image": "cocop.jpg"
       },
       {
         "id": 5,
-        "name": "Red Temptation",
-        "price": "$100.99",
+        "name": "Dolce Gabbana",
+        "price": "$300.99",
         "category": "Zara",
-        "image": "tempt.jpg"
+        "image": "dg.jpg"
       },
       {
         "id": 6,
-        "name": "Red Temptation",
+        "name": "Black",
         "price": "$100.99",
         "category": "Zara",
-        "image": "tempt.jpg"
+        "image": "about1.jpg"
       },
       {
         "id": 7,
-        "name": "Red Temptation",
-        "price": "$100.99",
+        "name": "Pink",
+        "price": "$300.00",
         "category": "Zara",
-        "image": "tempt.jpg"
+        "image": "about2.jpg"
       }
   ]

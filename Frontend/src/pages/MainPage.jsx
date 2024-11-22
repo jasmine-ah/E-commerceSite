@@ -112,7 +112,7 @@ function MainPage(){
       <div className="flex space-x-8 snap-x snap-mandatory">
         {products.map((product) => (
           <div key={product.id} className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 w-72 shrink-0 snap-center">
-            <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-t-lg"/>
+            <img src={product.image} alt={product.name} className="w-full h-48 object-center rounded-t-lg"/>
             <div className="p-4">
               <h3 className="text-xl font-semibold mb-2 text-[#6b7b8c]">{product.name}</h3>
               <p className="text-lg font-bold text-[#c7899e]">{product.price}</p>
@@ -137,7 +137,7 @@ function MainPage(){
         <input type='email' placeholder='Your Email' className='w-full px-4 py-2 sm:py-3 border rounded-lg focus:outline-none focus:border-[#c7899e]' />
       </div>
       <textarea placeholder='Your Message' rows='4' className='w-full px-4 py-2 sm:py-3 border rounded-lg focus:outline-none focus:border-[#c7899e]'></textarea>
-      <button type='submit' className='px-6 py-2 sm:py-3 bg-[#c7899e] text-white rounded-full hover:bg-[#fbdee3] transition duration-300'>
+      <button type='submit' className='px-6 py-2 sm:py-3 bg-[#c7899e] sm:ml-[18rem] text-white rounded-full hover:bg-[#fbdee3] transition duration-300'>
         Send Message
       </button>
     </form>
