@@ -92,7 +92,7 @@ function Signup() {
 
     return (
         <>
-            <div className="wrapper flex flex-col sm:flex-row h-screen sm:h-[760px] bg-[#f4f7fb]">
+            <div className="wrapper flex flex-col sm:flex-row h-screen sm:h-screen bg-[#f4f7fb]">
 
                 <div className="flex flex-col text-[#3d1f24] w-full sm:w-[45%] h-screen p-6 bg-[#fce4ec] justify-center items-center text-center sm:text-left">
                     <h1 className="text-3xl sm:text-5xl font-bold">Welcome Friend</h1>
