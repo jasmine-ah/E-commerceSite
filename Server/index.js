@@ -16,7 +16,15 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
-app.use(cors());
+const allowedOrigins = [
+  'https://your-frontend.vercel.app', 'http://localhost:8080','http://localhost:5173' 
+];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  credentials: true, 
+}));
 app.use(express.json());
 
 app.use('/api/auth', userRoutes);

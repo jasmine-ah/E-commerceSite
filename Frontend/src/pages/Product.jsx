@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import API_URL from "../apiConfig";
 const Product = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
@@ -19,7 +20,7 @@ const Product = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/products/${productId}`);
+        const response = await fetch(`${API_URL}/api/products/${productId}`);
         const data = await response.json();
         setProduct(data);
       } catch (error) {
@@ -41,7 +42,7 @@ const Product = () => {
           Authorization: `Bearer ${token}`,
         },
       };
-      const response = await axios.post("http://localhost:8080/api/cart/addToCart",
+      const response = await axios.post(`${API_URL}/api/cart/addToCart`,
         {
           productId: product._id,
           quantity: 1,   
