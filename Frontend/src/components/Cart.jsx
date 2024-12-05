@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {Modal, Box, TextField, Button } from "@mui/material";
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
+import API_URL from "../apiConfig"; 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [isPaymentOpen, setIsPaymentOpen] = useState(false);
@@ -41,7 +42,7 @@ useEffect(() => {
   
 const fetchCart = async () => {
 try {
-  const response = await fetch(`http://localhost:8080/api/cart/${userId}`, {
+  const response = await fetch(`${API_URL}/api/cart/${userId}`, {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`, 
             "Content-Type": "application/json" 
@@ -63,7 +64,7 @@ try {
 
   const handleRemoveItem = async (productId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/cart/delete/${productId}`, {
+      await axios.delete(`${API_URL}/api/cart/delete/${productId}`, {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`, 
           "Content-Type": "application/json" 
@@ -89,7 +90,7 @@ try {
     );
 
     try {
-      const response = await axios.post('http://localhost:8080/api/cart/checkout', {
+      const response = await axios.post(`${API_URL}/api/cart/checkout`, {
         cartItems: selectedCartItems,
         totalAmount,
         selectedItems,

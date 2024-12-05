@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
-
+import API_URL from "../../apiConfig"; 
 function UserManage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ function UserManage() {
     try {
     setLoading(true);
     setError(null);
-    const response = await axios.get('http://localhost:8080/api/auth/allUser', {
+    const response = await axios.get(`${API_URL}/api/auth/allUser`, {
       
       headers: {
         

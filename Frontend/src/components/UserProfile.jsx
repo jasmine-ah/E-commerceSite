@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {Modal, Box, TextField, Button } from "@mui/material";
 import axios from "axios";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import API_URL from "../apiConfig"; 
 const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const userId = localStorage.getItem("userId");
@@ -17,7 +17,7 @@ const UserProfile = () => {
   
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/auth/${userId}`);
+        const response = await fetch(`${API_URL}/api/auth/${userId}`);
         const data = await response.json();
         setUser(data);
       } catch (error) {
@@ -27,7 +27,7 @@ const UserProfile = () => {
 
   const handleEditClick = async () => {
     try {
-    await axios.put(`http://localhost:8080/api/auth/${editUser._id}`, editUser);
+    await axios.put(`${API_URL}/api/auth/${editUser._id}`, editUser);
     fetchUser();
     handleCloseEdit();
     } catch (err) {

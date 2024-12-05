@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Link,useNavigate} from 'react-router-dom';
 import { toast, ToastContainer } from "react-toastify"; 
 import "react-toastify/dist/ReactToastify.css";
+import API_URL from "../apiConfig"; 
 function Signup() {
     const Navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ function Signup() {
             return;
         }
         try {
-            const response = await axios.post('http://localhost:8080/api/auth/signup', {
+            const response = await axios.post(`${API_URL}/api/auth/signup`, {
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import API_URL from "../apiConfig"; 
 const OrderHistory = () => {
   const [orderItems, setOrderItems] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0); 
@@ -10,7 +10,7 @@ const OrderHistory = () => {
 
   const fetchOrder = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/order/all`, {
+      const response = await fetch(`${API_URL}/api/order/all`, {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",

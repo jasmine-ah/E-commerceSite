@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 //import { BarChart } from '@mui/x-charts/BarChart';
+import API_URL from "../../apiConfig"; 
 const Reports = () => {
   const [userData, setUserData] = useState([]);
   const [orderData, setOrderData] = useState([]);
@@ -14,7 +15,7 @@ const Reports = () => {
     }, []);
 
     const fetchActiveUser = async () => {
-    await fetch('http://localhost:8080/api/auth/activeUsers')
+    await fetch(`${API_URL}/api/auth/activeUsers`)
       .then(response => response.json())
       .then(data => {
         const formattedData = [
@@ -28,7 +29,7 @@ const Reports = () => {
       .catch(error => console.error('Error fetching active users data:', error));
     };
     const fetchOrderReport = async () => {
-      await fetch('http://localhost:8080/api/order/orderreport')
+      await fetch(`${API_URL}/api/order/orderreport`)
         .then(response => response.json())
         .then(data => {
           const formattedData = [
@@ -43,7 +44,7 @@ const Reports = () => {
       };
   
   const fetchProductReport = async ()=>{
-    await fetch('http://localhost:8080/api/report/countproduct')
+    await fetch(`${API_URL}/api/report/countproduct`)
     .then(response => response.json())
     .then(data => {
       const formattedData = [
@@ -58,7 +59,7 @@ const Reports = () => {
   };
   const fetchProductsSoldData = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/report/productsold');
+      const response = await fetch(`${API_URL}/api/report/productsold`);
       const data = await response.json();
       const formattedData = data.map((item) => ({
         date: item._id,

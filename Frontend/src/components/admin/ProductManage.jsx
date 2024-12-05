@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Modal, Box, TextField, Button } from "@mui/material";
 import { Add, Edit, Delete } from "@mui/icons-material";
 import {IconButton} from "@mui/material";
+import API_URL from "../../apiConfig"; 
 function ProductManage() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -20,7 +21,7 @@ const fetchProducts = async () => {
     try {
     setLoading(true);
     setError(null);
-    const response = await axios.get('http://localhost:8080/api/products/all');
+    const response = await axios.get(`${API_URL}/api/products/all`);
     setProducts(response.data);
     } catch (err) {
     console.error('Error fetching products:', err);
@@ -32,7 +33,7 @@ const fetchProducts = async () => {
 
 const handleDelete = async (productId) => {
     try {
-    await axios.delete(`http://localhost:8080/api/products/${productId}`);
+    await axios.delete(`${API_URL}/api/products/${productId}`);
     fetchProducts();
     } catch (err) {
     console.error('Error deleting product:', err);
@@ -59,7 +60,7 @@ const handleInputChange = (e, isEdit = false) => {
 
 const handleAddProduct = async () => {
     try {
-    await axios.post('http://localhost:8080/api/products/create', newProduct);
+    await axios.post(`${API_URL}/api/products/create`, newProduct);
     fetchProducts();
     setNewProduct({ name: "", description: "", price: "", imageUrl: [], category: "", stock: "" });
     handleCloseAdd();
@@ -70,7 +71,7 @@ const handleAddProduct = async () => {
 
 const handleEditProduct = async () => {
     try {
-    await axios.put(`http://localhost:8080/api/products/${editProduct._id}`, editProduct);
+    await axios.put(`${API_URL}/api/products/${editProduct._id}`, editProduct);
     fetchProducts();
     handleCloseEdit();
     } catch (err) {

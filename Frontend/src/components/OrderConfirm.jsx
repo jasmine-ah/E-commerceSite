@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import API_URL from "../apiConfig"; 
 const OrderConfirm = ({ cartItems, onClose }) => {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
@@ -9,7 +9,7 @@ const OrderConfirm = ({ cartItems, onClose }) => {
     setIsProcessing(true);
     
     try {
-      const response = await axios.post("http://localhost:8080/api/checkout", {
+      const response = await axios.post(`${API_URL}/api/checkout`, {
         cartItems
       }, {
         headers: {
