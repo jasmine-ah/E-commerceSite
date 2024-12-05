@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch((err) => console.error('MongoDB connection error:', err));
 
 const allowedOrigins = [
-  'https://your-frontend.vercel.app', 'http://localhost:8080','http://localhost:5173' 
+  'https://e-commerce-site-perfume.vercel.app', 'http://localhost:8080','http://localhost:5173' 
 ];
 
 app.use(cors({
